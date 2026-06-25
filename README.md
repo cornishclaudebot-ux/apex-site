@@ -18,6 +18,13 @@ Single-file marketing site for the Apex AI agency. Everything lives in `index.ht
 - **Work / portfolio:** the `<!-- WORK -->` section. Each project is one `<a>` with a tag, name, description, and live link. All four links are verified live. If you add one, test the link first (dead links were a past mistake).
 - **Nav:** the `.navlinks` block. Active highlight (scrollspy) is automatic based on `href="#section"`.
 
+## SEO
+- Three pillars drive all the messaging: **AI consulting, automation, website design and building.**
+- The deep SEO page is `ai-consulting-phoenix.html`, linked quietly from the footer and listed in `sitemap.xml`. It targets local searches for AI consulting, AI receptionists, missed-call text-back, chatbots, CRM automation, web design, and local SEO across Phoenix and the West Valley, with an FAQ (FAQPage schema) for rich results.
+- `sitemap.xml` + `robots.txt` point Google at both pages. After deploy, submit the sitemap in Google Search Console (Sitemaps → enter `sitemap.xml`) to get indexed faster.
+- To rank for more terms later, clone `ai-consulting-phoenix.html` into per-service or per-city pages (e.g. `ai-receptionist-phoenix.html`, `web-design-glendale.html`) and add each to `sitemap.xml`. That is programmatic local SEO.
+- A truly hidden/unlinked or keyword-stuffed page does NOT rank and can get penalized; that is why the SEO page is real, readable, and crawlable.
+
 ## Deploy (same as your other sites)
 - Push to a GitHub repo and enable GitHub Pages, or drag the folder into Netlify. HTTPS is automatic on both.
 - Then point a domain at it and add the `og:image`.
