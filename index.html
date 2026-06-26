@@ -717,6 +717,17 @@
         camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
         renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight);
       });
+      // choreographed scroll path: the brain travels around the page. [scrollFrac, x, y, z(depth), scaleMul]
+      // kept off the left-aligned copy (back/small when it sits left) so text stays readable.
+      const KF = [
+        [0.00,  0.00,  0.00,  0.20, 1.00],  // hero: center, slightly forward
+        [0.15,  1.45,  0.35, -0.60, 0.95],  // work: screen right, back
+        [0.32, -1.40, -0.05, -1.20, 0.86],  // services: screen left, pushed far back (soft accent)
+        [0.50,  0.20,  1.15, -1.55, 0.82],  // packages: up top, far back
+        [0.66,  1.35,  0.05,  0.55, 1.06],  // why: screen right, forward (big)
+        [0.82, -0.10, -1.00, -0.45, 0.95],  // stats: down at the bottom
+        [1.00,  0.00, -0.10,  1.05, 1.12],  // contact: center, flies forward to frame the form
+      ];
       function frame(){
         const t = clock.getElapsedTime();
         scrollSmooth += (scrollTarget - scrollSmooth) * 0.07;
@@ -725,16 +736,30 @@
         if (shaderRef){
           shaderRef.uniforms.uTime.value = t;
           shaderRef.uniforms.uTimeNow.value = t;
-          shaderRef.uniforms.uAmp.value = reduceMotion ? 0 : p*1.1;
+          shaderRef.uniforms.uAmp.value = reduceMotion ? 0 : 0.5 + Math.sin(p*Math.PI)*0.8;
         }
 
         if (!reduceMotion){
-          brain.rotation.y = t*0.07 + p*Math.PI*1.1;
-          brain.rotation.x = 0.12 + Math.sin(t*0.16)*0.05 + p*0.3;
-          const pulse = 1.0 - Math.sin(p*Math.PI)*0.12 + p*0.05;
+          // interpolate along the keyframe path, smoothstep-eased for a buttery glide
+          let i = 0; while (i < KF.length-2 && p > KF[i+1][0]) i++;
+          const a = KF[i], b = KF[i+1];
+          let lt = (p - a[0]) / (b[0] - a[0]); lt = lt < 0 ? 0 : lt > 1 ? 1 : lt;
+          const e = lt*lt*(3-2*lt);
+          const kx = a[1]+(b[1]-a[1])*e, ky = a[2]+(b[2]-a[2])*e, kz = a[3]+(b[3]-a[3])*e, ks = a[4]+(b[4]-a[4])*e;
+
+          // idle float + subtle depth bob so it is always alive, plus mouse parallax
+          brain.position.x = kx + Math.cos(t*0.37)*0.05 + pmx*0.35;
+          brain.position.y = ky + Math.sin(t*0.50)*0.07 - pmy*0.25;
+          brain.position.z = kz + Math.sin(t*0.31)*0.10;
+
+          const pulse = ks * (1 + Math.sin(t*0.6)*0.02);
           brain.scale.set(1.16*pulse, 0.94*pulse, 1.0*pulse);
-          brain.position.x = Math.sin(p*Math.PI)*0.45 + p*0.5;   // drift right, clears left-side copy
-          brain.position.y = -p*0.4;
+
+          // livelier rotation: continuous spin + scroll tumble + gentle z-wobble
+          brain.rotation.y = t*0.12 + p*Math.PI*1.6;
+          brain.rotation.x = 0.12 + Math.sin(t*0.22)*0.10 + p*0.5;
+          brain.rotation.z = Math.sin(t*0.18)*0.08;
+
           bloom.strength = 0.55 + Math.sin(p*Math.PI)*0.3;
           points.rotation.y = t*0.02 + p*0.5;
         } else {
@@ -742,9 +767,9 @@
         }
 
         pmx += (tmx-pmx)*0.05; pmy += (tmy-pmy)*0.05;
-        brain.rotation.y += pmx*0.45; brain.rotation.x += pmy*0.32;
-        camera.position.x += (pmx*0.6 - camera.position.x)*0.05;
-        camera.position.y += (-pmy*0.5 - camera.position.y)*0.05;
+        brain.rotation.y += pmx*0.5; brain.rotation.x += pmy*0.35;
+        camera.position.x += (pmx*0.7 - camera.position.x)*0.05;
+        camera.position.y += (-pmy*0.55 - camera.position.y)*0.05;
         camera.lookAt(0,0,0);
 
         composer.render();
