@@ -112,13 +112,20 @@
   .click-hint .pip{width:7px;height:7px;border-radius:50%;background:var(--grad);animation:pulse 1.8s ease-in-out infinite}
 
   /* marquee */
-  .marquee{position:relative;z-index:2;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    padding:24px 0;overflow:hidden;white-space:nowrap;background:rgba(6,7,11,.55);backdrop-filter:blur(6px)}
-  .marquee-track{display:inline-flex;gap:46px;animation:marquee 30s linear infinite;will-change:transform}
-  .marquee span{font-family:'Space Grotesk';font-weight:600;font-size:clamp(18px,2.6vw,30px);text-transform:uppercase;
-    letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.5)}
-  .marquee span.fill{color:var(--ink);-webkit-text-stroke:0}
-  .marquee .dot{color:var(--mag);-webkit-text-stroke:0}
+  /* capability chips: static, each a colour from inside the brain, pulse on hover + flare on tap like the brain */
+  .capbar{position:relative;z-index:2;padding:30px 22px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:rgba(8,9,14,.45);backdrop-filter:blur(8px)}
+  .chips{display:flex;flex-wrap:wrap;gap:13px;justify-content:center;max-width:1000px;margin:0 auto}
+  .chip{--c:#8a5cff;position:relative;display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:100px;
+    border:1px solid var(--line);background:rgba(255,255,255,.025);font-family:'Space Grotesk';font-weight:500;font-size:14px;
+    letter-spacing:.12em;text-transform:uppercase;color:#e8ebf3;cursor:pointer;box-shadow:0 0 15px -7px var(--c);
+    transition:transform .3s,border-color .4s,background .4s}
+  .chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c);box-shadow:0 0 10px var(--c);flex:none}
+  .chip:hover{transform:translateY(-2px);border-color:var(--c);background:rgba(255,255,255,.05);animation:chipPulse 1.5s ease-in-out infinite}
+  .chip.flare{animation:chipFlare .85s ease-out}
+  @keyframes chipPulse{0%,100%{box-shadow:0 0 16px -5px var(--c)}50%{box-shadow:0 0 34px 1px var(--c)}}
+  @keyframes chipFlare{0%{box-shadow:0 0 44px 9px var(--c);transform:scale(1.09)}100%{box-shadow:0 0 15px -7px var(--c);transform:scale(1)}}
+  @media(prefers-reduced-motion:reduce){.chip:hover,.chip.flare{animation:none}}
 
   /* sections */
   section{position:relative;z-index:2;padding-top:130px;padding-bottom:130px;scroll-margin-top:96px}
@@ -277,10 +284,16 @@
     <div class="click-hint"><span class="pip"></span> Click anywhere to light up the brain</div>
   </header>
 
-  <div class="marquee">
-    <div class="marquee-track">
-      <span class="fill">AI Consulting</span><span class="dot">✦</span><span>Automation</span><span class="dot">✦</span><span class="fill">Web Design</span><span class="dot">✦</span><span>AI Receptionist</span><span class="dot">✦</span><span class="fill">Missed-Call Text-Back</span><span class="dot">✦</span><span>Chatbots</span><span class="dot">✦</span><span class="fill">Local SEO</span><span class="dot">✦</span>
-      <span class="fill">AI Consulting</span><span class="dot">✦</span><span>Automation</span><span class="dot">✦</span><span class="fill">Web Design</span><span class="dot">✦</span><span>AI Receptionist</span><span class="dot">✦</span><span class="fill">Missed-Call Text-Back</span><span class="dot">✦</span><span>Chatbots</span><span class="dot">✦</span><span class="fill">Local SEO</span><span class="dot">✦</span>
+  <div class="capbar">
+    <div class="chips">
+      <span class="chip" data-cursor style="--c:#36e0ff">AI Consulting</span>
+      <span class="chip" data-cursor style="--c:#49b6ff">Automation</span>
+      <span class="chip" data-cursor style="--c:#6f8cff">Web Design</span>
+      <span class="chip" data-cursor style="--c:#8a5cff">AI Receptionist</span>
+      <span class="chip" data-cursor style="--c:#a857f0">Missed-Call Text-Back</span>
+      <span class="chip" data-cursor style="--c:#c74fc6">Chatbots</span>
+      <span class="chip" data-cursor style="--c:#e8459f">Local SEO</span>
+      <span class="chip" data-cursor style="--c:#ff3d8b">CRM Automation</span>
     </div>
   </div>
 
@@ -337,6 +350,20 @@
         <h3>Website design & building</h3>
         <p>Fast, custom websites built to convert, with booking, lead capture, and local SEO baked in so you actually show up on Google and get found.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- SECOND BRAIN -->
+  <section id="second-brain" class="wrap">
+    <div style="text-align:center;max-width:800px;margin:0 auto">
+      <div class="sec-label reveal">Your unfair advantage</div>
+      <h2 class="sec-title reveal d1" style="margin:0 auto">Most AI forgets. <span class="grad">Yours won't.</span></h2>
+      <p class="lead reveal d2" style="margin-left:auto;margin-right:auto">Most businesses treat AI like a stranger they re-explain themselves to every morning. We build yours a second brain: a living memory of how your business runs, what you've taught it, and what it learns on the job. Your pricing, your voice, your customers, your process. It remembers, it draws its own conclusions, and it keeps getting sharper. You stop repeating yourself, because it already knows. While your competition starts from scratch every day, yours compounds. That is the edge.</p>
+    </div>
+    <div class="grid" style="margin-top:50px">
+      <div class="card reveal" data-cursor><div class="ic">🧠</div><h3>Remembers</h3><p>Everything you teach it sticks: your pricing, your process, your voice, your customers. No more repeating yourself.</p></div>
+      <div class="card reveal d1" data-cursor><div class="ic">📈</div><h3>Learns</h3><p>It draws its own conclusions from what it sees in your business, and gets sharper the longer it runs.</p></div>
+      <div class="card reveal d2" data-cursor><div class="ic">⚡</div><h3>Compounds</h3><p>While competitors start from scratch every day, yours keeps building on everything it already knows.</p></div>
     </div>
   </section>
 
@@ -468,6 +495,14 @@
     }, { threshold: 0.14 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
+    /* capability chips flare on tap like the brain (gentle hover pulse is pure CSS) */
+    document.querySelectorAll('.chip').forEach(c => {
+      c.addEventListener('pointerdown', () => {
+        c.classList.remove('flare'); void c.offsetWidth; c.classList.add('flare');
+        setTimeout(() => c.classList.remove('flare'), 850);
+      });
+    });
+
     /* active nav highlight (scrollspy) */
     const spyLinks = [...document.querySelectorAll('.navlinks a[href^="#"]')];
     const spyMap = {}; spyLinks.forEach(a => { const id = a.getAttribute('href').slice(1); if (id) spyMap[id] = a; });
@@ -565,6 +600,7 @@
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 0.1, 100);
       camera.position.set(0, 0, 5);
+      camera.lookAt(0, 0, 0);
 
       const pmrem = new THREE.PMREMGenerator(renderer);
       scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
@@ -644,16 +680,15 @@
           #include <emissivemap_fragment>
           for(int i=0;i<PINGS;i++){
             float age = uTimeNow - uPingTime[i];
-            if(age < 0.0 || age > 4.5) continue;
+            if(age < 0.0 || age > 7.0) continue;
             float d = distance(vLocalPos, uPingPos[i]);
-            float radius = age * 1.7;
-            float ring = smoothstep(0.34, 0.0, abs(d - radius));     // expanding shell from the click
-            float fill = smoothstep(0.95, 0.0, d) * exp(-age*2.4);   // bright pop at the click point
-            float decay = exp(-age*1.1);
-            totalEmissiveRadiance += uPingColor[i] * (ring*2.6*decay + fill*1.6);
+            float radius = age * 0.72;                              // one slow ripple sweeping the whole brain
+            float ring = smoothstep(0.5, 0.0, abs(d - radius));     // wide, soft ripple band
+            float decay = exp(-age*0.5);                            // lingers as it crosses the surface
+            totalEmissiveRadiance += uPingColor[i] * ring * 2.4 * decay;
           }
           float fage = uTimeNow - uFlashTime;
-          if(fage >= 0.0) totalEmissiveRadiance += uFlashColor * exp(-fage*2.2) * 0.55;  // whole-brain flash
+          if(fage >= 0.0) totalEmissiveRadiance += uFlashColor * exp(-fage*1.3) * 0.30;  // gentle whole-brain glow
         `);
       };
 
@@ -680,7 +715,7 @@
 
       const clock = new THREE.Clock();
       const raycaster = new THREE.Raycaster();
-      let pingIdx = 0;
+      let pingIdx = 0, lastTap = -100;
 
       /* ---- CLICK TO LIGHT UP ---- */
       function addPing(clientX, clientY){
@@ -699,6 +734,7 @@
         const hue = (((clientX/innerWidth)*0.78 + (clientY/innerHeight)*0.22) + 0.02) % 1;
         const color = new THREE.Color().setHSL(hue, 0.95, 0.6);
         const now = clock.getElapsedTime();
+        lastTap = now;
         if (local){
           const i = pingIdx % 6; pingIdx++;
           shaderRef.uniforms.uPingPos.value[i].copy(local);
@@ -709,9 +745,6 @@
         shaderRef.uniforms.uFlashTime.value = now;
       }
       addEventListener('pointerdown', e => addPing(e.clientX, e.clientY));
-
-      let pmx=0, pmy=0, tmx=0, tmy=0;
-      if (!isTouch) addEventListener('mousemove', e => { tmx = e.clientX/innerWidth-0.5; tmy = e.clientY/innerHeight-0.5; });
 
       addEventListener('resize', () => {
         camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
@@ -740,37 +773,38 @@
         }
 
         if (!reduceMotion){
-          // interpolate along the keyframe path, smoothstep-eased for a buttery glide
+          // internal lights pulse like the brain is thinking; a tap makes them surge
+          const tapBoost = Math.max(0, Math.exp(-(t - lastTap) * 1.4));
+          const think = (f, ph) => 0.55 + 0.35*Math.sin(t*f + ph) + 0.10*Math.sin(t*f*3.1 + ph*1.7);
+          l1.intensity = 17 * (think(1.6, 0.0) + tapBoost*0.9);
+          l2.intensity = 16 * (think(2.1, 2.1) + tapBoost*0.9);
+          l3.intensity = 13 * (think(1.3, 4.2) + tapBoost*0.9);
+
+          // glide the brain along its choreographed scroll path (smoothstep-eased)
           let i = 0; while (i < KF.length-2 && p > KF[i+1][0]) i++;
           const a = KF[i], b = KF[i+1];
           let lt = (p - a[0]) / (b[0] - a[0]); lt = lt < 0 ? 0 : lt > 1 ? 1 : lt;
           const e = lt*lt*(3-2*lt);
           const kx = a[1]+(b[1]-a[1])*e, ky = a[2]+(b[2]-a[2])*e, kz = a[3]+(b[3]-a[3])*e, ks = a[4]+(b[4]-a[4])*e;
 
-          // idle float + subtle depth bob so it is always alive, plus mouse parallax
-          brain.position.x = kx + Math.cos(t*0.37)*0.05 + pmx*0.35;
-          brain.position.y = ky + Math.sin(t*0.50)*0.07 - pmy*0.25;
+          // gentle idle float + depth bob so it is always alive (no cursor tracking)
+          brain.position.x = kx + Math.cos(t*0.37)*0.05;
+          brain.position.y = ky + Math.sin(t*0.50)*0.07;
           brain.position.z = kz + Math.sin(t*0.31)*0.10;
 
           const pulse = ks * (1 + Math.sin(t*0.6)*0.02);
           brain.scale.set(1.16*pulse, 0.94*pulse, 1.0*pulse);
 
-          // livelier rotation: continuous spin + scroll tumble + gentle z-wobble
           brain.rotation.y = t*0.12 + p*Math.PI*1.6;
           brain.rotation.x = 0.12 + Math.sin(t*0.22)*0.10 + p*0.5;
           brain.rotation.z = Math.sin(t*0.18)*0.08;
 
-          bloom.strength = 0.55 + Math.sin(p*Math.PI)*0.3;
+          bloom.strength = 0.55 + Math.sin(p*Math.PI)*0.3 + tapBoost*0.25;
           points.rotation.y = t*0.02 + p*0.5;
         } else {
+          l1.intensity = 14; l2.intensity = 13; l3.intensity = 10;
           brain.rotation.y = t*0.04; brain.scale.set(1.16,0.94,1.0);
         }
-
-        pmx += (tmx-pmx)*0.05; pmy += (tmy-pmy)*0.05;
-        brain.rotation.y += pmx*0.5; brain.rotation.x += pmy*0.35;
-        camera.position.x += (pmx*0.7 - camera.position.x)*0.05;
-        camera.position.y += (-pmy*0.55 - camera.position.y)*0.05;
-        camera.lookAt(0,0,0);
 
         composer.render();
       }
