@@ -285,15 +285,15 @@
         );
         window.location.href = `mailto:${CONFIG.FALLBACK_EMAIL}?subject=${encodeURIComponent('Free AI Audit — '+data.business)}&body=${body}`;
       } else {
-        console.log('[Apex audit — demo mode] payload:', data);  // wire CONFIG to go live
-        await new Promise(r => setTimeout(r, 700));
+        // No endpoint configured at all: never pretend the audit was sent.
+        throw new Error('no endpoint configured');
       }
       form.style.display = 'none';
       done.classList.add('show');
       done.scrollIntoView({ behavior:'smooth' });
     } catch (err) {
       goBtn.disabled = false;
-      setStatus('Something went wrong sending that. Try again, or email us directly.', 'err');
+      setStatus('Something went wrong sending that. Try again, or email us directly at ' + CONFIG.FALLBACK_EMAIL + '.', 'err');
     }
   });
 </script>
