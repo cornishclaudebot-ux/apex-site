@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>APEX // Brand Bible</title>
+<meta name="description" content="The Apex brand bible: the brain logo, color, typography, voice, and components. One system, consistent across the board." />
+<meta name="theme-color" content="#06070b" />
+<link rel="icon" href="assets/apex-mark.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#06070b; --ink:#f2f4fa; --muted:#aab1c6; --faint:#6b7488;
+    --line:rgba(255,255,255,.12); --glass:rgba(16,19,30,.55);
+    --cyan:#36e0ff; --violet:#8a5cff; --mag:#ff3d8b;
+    --grad:linear-gradient(90deg,var(--cyan),var(--violet) 45%,var(--mag));
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--violet);color:#fff}
+  .glow{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(40% 34% at 78% 8%, rgba(138,92,255,.24), transparent 70%),
+      radial-gradient(38% 30% at 12% 22%, rgba(54,224,255,.18), transparent 70%),
+      radial-gradient(50% 40% at 60% 100%, rgba(255,61,139,.16), transparent 70%)}
+  .wrap{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 30px}
+  .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+    padding:15px 30px;background:rgba(6,7,11,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .brand{font-family:'Space Grotesk';font-weight:700;letter-spacing:.22em;font-size:15px;display:flex;align-items:center;gap:8px}
+  .brand img{width:24px;height:24px}
+  nav .r{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint)}
+
+  header{text-align:center;padding:120px 30px 80px;position:relative;z-index:2}
+  header .logo-xl{width:150px;height:150px;margin:0 auto 30px;filter:drop-shadow(0 0 40px rgba(138,92,255,.5))}
+  .eyebrow{font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--cyan);margin-bottom:20px}
+  h1{font-family:'Space Grotesk';font-weight:700;font-size:clamp(44px,9vw,104px);line-height:.92;letter-spacing:-.02em;text-transform:uppercase}
+  header p{max-width:560px;margin:26px auto 0;color:var(--muted);font-size:18px}
+
+  section{padding:70px 0;border-top:1px solid var(--line)}
+  .kicker{font-family:'Space Grotesk';font-size:12.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--violet);margin-bottom:14px}
+  h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(28px,4.6vw,46px);line-height:1.05;letter-spacing:-.01em;margin-bottom:8px}
+  .sublead{color:var(--muted);font-size:16.5px;max-width:640px;margin-top:14px}
+  h3{font-family:'Space Grotesk';font-weight:600;font-size:19px;margin-bottom:8px}
+  p.body{color:#cdd2e0;font-size:16px;max-width:680px;margin-top:16px}
+
+  /* essence */
+  .promise{font-family:'Space Grotesk';font-weight:600;font-size:clamp(22px,3.4vw,32px);line-height:1.3;
+    letter-spacing:-.01em;margin-top:34px;max-width:860px}
+  .story{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:40px}
+  @media(max-width:760px){.story{grid-template-columns:1fr}}
+  .glass{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:26px;backdrop-filter:blur(12px)}
+  .glass p{color:var(--muted);font-size:15px;margin-top:8px}
+
+  /* logo section */
+  .logo-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;margin-top:40px;align-items:stretch}
+  @media(max-width:820px){.logo-grid{grid-template-columns:1fr}}
+  .logo-hero{display:grid;place-items:center;min-height:280px;background:radial-gradient(60% 60% at 50% 45%,rgba(138,92,255,.12),transparent 70%),var(--glass);
+    border:1px solid var(--line);border-radius:18px}
+  .logo-hero img{width:150px;height:150px;filter:drop-shadow(0 0 30px rgba(138,92,255,.45))}
+  .lockups{display:flex;flex-direction:column;gap:16px}
+  .lockup{display:flex;align-items:center;gap:14px;padding:20px 24px;background:var(--glass);border:1px solid var(--line);border-radius:14px}
+  .lockup.light{background:#eef0f5}
+  .lockup .word{font-family:'Space Grotesk';font-weight:700;letter-spacing:.22em;font-size:22px;color:var(--ink)}
+  .lockup.light .word{color:#0b0d13}
+  .lockup .word.stack small{display:block;font-size:9.5px;letter-spacing:.34em;color:var(--faint);font-weight:500;margin-top:3px}
+  .logo-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+  @media(max-width:620px){.logo-meta{grid-template-columns:1fr}}
+  .logo-meta .glass{padding:18px}
+  .logo-meta .lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-bottom:8px}
+  .swatch-mini{display:flex;align-items:center;gap:10px}
+  .dot{width:14px;height:14px;border-radius:50%}
+
+  /* dos / donts */
+  .dd{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:34px}
+  @media(max-width:760px){.dd{grid-template-columns:1fr}}
+  .dd .col{padding:24px;border-radius:16px;border:1px solid var(--line)}
+  .dd .do{background:rgba(62,224,138,.06);border-color:rgba(62,224,138,.28)}
+  .dd .dont{background:rgba(255,90,120,.05);border-color:rgba(255,90,120,.26)}
+  .dd h4{font-family:'Space Grotesk';font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+  .dd .do h4{color:#7ef0b0}.dd .dont h4{color:#ff9bb6}
+  .dd ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .dd li{font-size:14.5px;color:#d4d8e6;padding-left:24px;position:relative;line-height:1.5}
+  .dd .do li::before{content:"✓";position:absolute;left:0;color:#7ef0b0;font-weight:700}
+  .dd .dont li::before{content:"✕";position:absolute;left:0;color:#ff9bb6;font-weight:700}
+
+  /* color */
+  .swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+  @media(max-width:820px){.swatches{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.swatches{grid-template-columns:1fr}}
+  .sw{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--glass)}
+  .sw .chip{height:96px}
+  .sw .meta{padding:16px 18px}
+  .sw .nm{font-family:'Space Grotesk';font-weight:600;font-size:15px}
+  .sw .hex{color:var(--faint);font-size:13px;letter-spacing:.04em;margin-top:3px;font-variant-numeric:tabular-nums}
+  .sw .use{color:var(--muted);font-size:12.5px;margin-top:8px}
+  .gradbar{height:64px;border-radius:14px;background:var(--grad);margin-top:20px;
+    display:flex;align-items:center;padding:0 22px;color:#06070b;font-family:'Space Grotesk';font-weight:700;letter-spacing:.06em}
+
+  /* type */
+  .type{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:34px}
+  @media(max-width:760px){.type{grid-template-columns:1fr}}
+  .specimen{padding:28px;border:1px solid var(--line);border-radius:18px;background:var(--glass)}
+  .specimen .fam{font-family:'Space Grotesk';font-weight:600;font-size:14px;letter-spacing:.02em;color:var(--cyan);margin-bottom:4px}
+  .specimen .role{font-size:12px;color:var(--faint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px}
+  .aa{font-family:'Space Grotesk';font-weight:700;font-size:88px;line-height:1;letter-spacing:-.02em}
+  .aa.inter{font-family:'Inter'}
+  .wt{display:flex;gap:16px;flex-wrap:wrap;margin-top:20px;color:var(--muted);font-size:13px}
+  .specimen p{margin-top:18px;color:#cdd2e0;font-size:15px}
+  .scale div{border-top:1px solid var(--line);padding:12px 0}
+  .scale .lab{font-size:11px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase}
+
+  /* voice principles */
+  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+  @media(max-width:820px){.principles{grid-template-columns:1fr}}
+  .pr{padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--glass)}
+  .pr .n{font-family:'Space Grotesk';font-weight:700;font-size:13px;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.1em;margin-bottom:12px}
+  .pr p{color:var(--muted);font-size:14.5px;margin-top:6px}
+
+  /* components */
+  .comps{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:34px}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:100px;font-size:14.5px;font-weight:600;
+    text-decoration:none;color:var(--ink);border:1px solid var(--line);background:rgba(255,255,255,.04)}
+  .btn.primary{background:var(--grad);border:none;color:#06070b;font-weight:700}
+  .chip-c{display:inline-flex;align-items:center;gap:9px;padding:11px 20px;border-radius:100px;border:1px solid var(--line);
+    background:rgba(255,255,255,.03);font-family:'Space Grotesk';font-weight:500;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+  .chip-c::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--violet);box-shadow:0 0 10px var(--violet)}
+
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--faint);font-size:13px;text-align:center}
+  footer a{color:var(--muted);text-decoration:none}
+  .note{margin-top:26px;color:var(--faint);font-size:13.5px}
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+
+  <nav>
+    <div class="brand"><img src="assets/apex-mark.svg" alt="Apex brain logo" />APEX</div>
+    <div class="r">Brand Bible · v1</div>
+  </nav>
+
+  <header>
+    <img class="logo-xl" src="assets/apex-mark.svg" alt="Apex brain logo" />
+    <div class="eyebrow">The Apex Identity System</div>
+    <h1>Brand <span class="grad">Bible</span></h1>
+    <p>One brain, one system, consistent across the board. This is how Apex looks, sounds, and shows up everywhere, from the website to the pitch to the first text a customer ever gets.</p>
+  </header>
+
+  <div class="wrap">
+
+    <!-- ESSENCE -->
+    <section>
+      <div class="kicker">01 · Who we are</div>
+      <h2>The Business Brain <span class="grad">for local companies.</span></h2>
+      <p class="body">Apex builds local businesses a brain. Not a template, not another tool to babysit, a living system that learns how you run, works in your voice, and gets smarter every day. We sell to owners who are sharp but not technical and have been burned by "tech guys" before. So we act like a local partner, not a vendor.</p>
+      <div class="promise">"We find where you're leaking customers, and we build the system that plugs it. <span class="grad">You own it. We grow it with you.</span>"</div>
+      <div class="story">
+        <div class="glass"><h3>Where it started</h3><p>We did this for my grandpa's 1959 label shop and my aunt's home-care company before we ever sold it. That founding story is the proof: real businesses, real family, real results.</p></div>
+        <div class="glass"><h3>What we actually sell</h3><p>Booked jobs, saved hours, more 5-star reviews, money recovered. The client buys a result, never "AI." The brain is just how we deliver it.</p></div>
+      </div>
+    </section>
+
+    <!-- LOGO -->
+    <section>
+      <div class="kicker">02 · The logo</div>
+      <h2>The brain, <span class="grad">lit up.</span></h2>
+      <p class="sublead">Our mark is the same brain that lives on the website: two hemispheres, a bright synapse firing at the top, nodes glowing in our three brand colors. It says exactly what we do. On the site it is alive and reacts to a click. Everywhere else, this is the still version.</p>
+      <div class="logo-grid">
+        <div class="logo-hero"><img src="assets/apex-mark.svg" alt="Apex brain logo" /></div>
+        <div class="lockups">
+          <div class="lockup"><img src="assets/apex-mark.svg" width="46" height="46" alt="" /><span class="word">APEX</span></div>
+          <div class="lockup"><img src="assets/apex-mark.svg" width="46" height="46" alt="" /><span class="word stack">APEX<small>AI CONSULTING</small></span></div>
+          <div class="lockup light"><img src="assets/apex-mark.svg" width="42" height="42" alt="" /><span class="word">APEX</span></div>
+        </div>
+      </div>
+      <div class="logo-meta">
+        <div class="glass"><div class="lab">Clear space</div><p style="color:var(--muted);font-size:14px">Keep space equal to the width of one hemisphere on all sides. Never crowd it.</p></div>
+        <div class="glass"><div class="lab">Minimum size</div><p style="color:var(--muted);font-size:14px">20px tall for the mark, 16px for the wordmark. Below that, use the mark alone.</p></div>
+        <div class="glass"><div class="lab">Favicon</div><div class="swatch-mini" style="margin-top:6px"><img src="assets/apex-mark.svg" width="26" height="26" alt="" /><span style="color:var(--muted);font-size:14px">The mark, solo.</span></div></div>
+      </div>
+      <div class="dd">
+        <div class="col do">
+          <h4>Do</h4>
+          <ul>
+            <li>Use the mark on dark backgrounds, where the glow lives.</li>
+            <li>Pair the mark with APEX in Space Grotesk, wide letter-spacing.</li>
+            <li>Let it breathe. Give it room and it carries the whole brand.</li>
+          </ul>
+        </div>
+        <div class="col dont">
+          <h4>Don't</h4>
+          <ul>
+            <li>Recolor it, flatten it to one color, or drop the glow.</li>
+            <li>Stretch, rotate, or add a drop shadow that fights the gradient.</li>
+            <li>Place it on a busy photo without a dark scrim behind it.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR -->
+    <section>
+      <div class="kicker">03 · Color</div>
+      <h2>Near-black, <span class="grad">lit by three.</span></h2>
+      <p class="sublead">A deep, almost-black base so the work glows. Cyan to violet to magenta is the signature, the same sweep that runs through the brain. Use the gradient for emphasis, one accent at a time for everything else.</p>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#06070b;border-bottom:1px solid var(--line)"></div><div class="meta"><div class="nm">Void</div><div class="hex">#06070B</div><div class="use">The base. Every screen starts here.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#f2f4fa"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#F2F4FA</div><div class="use">Primary text on dark.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#aab1c6"></div><div class="meta"><div class="nm">Muted</div><div class="hex">#AAB1C6</div><div class="use">Body copy, sub-text.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#36e0ff"></div><div class="meta"><div class="nm">Cyan</div><div class="hex">#36E0FF</div><div class="use">Labels, links, the cool end.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#8a5cff"></div><div class="meta"><div class="nm">Violet</div><div class="hex">#8A5CFF</div><div class="use">The core. Primary accent + glow.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#ff3d8b"></div><div class="meta"><div class="nm">Magenta</div><div class="hex">#FF3D8B</div><div class="use">Energy, the warm end, CTAs.</div></div></div>
+      </div>
+      <div class="gradbar">THE GRADIENT · #36E0FF → #8A5CFF → #FF3D8B</div>
+    </section>
+
+    <!-- TYPE -->
+    <section>
+      <div class="kicker">04 · Typography</div>
+      <h2>Grotesk for punch. <span class="grad">Inter for calm.</span></h2>
+      <p class="sublead">Two typefaces, both free on Google Fonts. Space Grotesk carries every headline and the wordmark. Inter carries everything you read. Never more than these two.</p>
+      <div class="type">
+        <div class="specimen">
+          <div class="fam">Space Grotesk</div><div class="role">Display · headlines · wordmark</div>
+          <div class="aa">Aa</div>
+          <div class="wt"><span>Regular 400</span><span>Medium 500</span><span>Semibold 600</span><span>Bold 700</span></div>
+          <p>Tight, geometric, a little futuristic. Used bold and large, uppercase for the biggest moments.</p>
+        </div>
+        <div class="specimen">
+          <div class="fam">Inter</div><div class="role">Body · UI · long-form</div>
+          <div class="aa inter">Aa</div>
+          <div class="wt"><span>Regular 400</span><span>Medium 500</span><span>Semibold 600</span></div>
+          <p>Quiet and endlessly readable. This paragraph is Inter. It never competes with the headline, it just gets out of the way.</p>
+        </div>
+      </div>
+      <div class="scale" style="margin-top:24px">
+        <div><span class="lab">Display</span> <span style="font-family:'Space Grotesk';font-weight:700;font-size:34px">Business Brain</span></div>
+        <div><span class="lab">Heading</span> <span style="font-family:'Space Grotesk';font-weight:600;font-size:22px">Section title</span></div>
+        <div><span class="lab">Body</span> <span style="font-size:16px;color:#cdd2e0">The line a customer actually reads.</span></div>
+        <div><span class="lab">Label</span> <span style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan)">Eyebrow / kicker</span></div>
+      </div>
+    </section>
+
+    <!-- VOICE -->
+    <section>
+      <div class="kicker">05 · Voice</div>
+      <h2>A local partner, <span class="grad">never a vendor.</span></h2>
+      <p class="sublead">Trustworthy, plain-spoken, quietly confident. If a 55-year-old shop owner wouldn't say it, we don't write it.</p>
+      <div class="principles">
+        <div class="pr"><div class="n">01 · Outcomes, never tech</div><p>Booked jobs, saved hours, money recovered. Never lead with the tool.</p></div>
+        <div class="pr"><div class="n">02 · Plain English</div><p>No "leverage," "synergy," "LLM," "agentic." Translate everything.</p></div>
+        <div class="pr"><div class="n">03 · Local and human</div><p>Phoenix West Valley, same time zone, a real person who picks up.</p></div>
+        <div class="pr"><div class="n">04 · Confident, not hypey</div><p>No fake scarcity, no "revolutionary." Here's exactly what we'd build.</p></div>
+        <div class="pr"><div class="n">05 · Honest</div><p>No invented stats, no fake reviews. Only real, live, verified proof.</p></div>
+        <div class="pr"><div class="n">06 · Owner-empowering</div><p>"Built in code, owned by you." They keep the asset, forever.</p></div>
+      </div>
+      <p class="body" style="margin-top:28px"><b style="color:var(--ink)">How we talk about AI:</b> your unfair advantage, a back office that never sleeps. It does the boring, repetitive work so you do the work only you can do. Never scary, never "replacing your people."</p>
+      <p class="body" style="margin-top:14px"><b style="color:var(--ink)">How we talk about security:</b> "Your AI runs in a locked-down space where it can't move money or leak your data, and every action is logged so you can see it and undo it." Never say "NemoClaw" or "NVIDIA" to a client. That is the quiet answer for a security questionnaire, not the headline.</p>
+      <div class="dd">
+        <div class="col do">
+          <h4>Say this</h4>
+          <ul>
+            <li>"Stop losing the customers who call when you're on a job. We text them back in seconds, automatically."</li>
+            <li>"A website you own, that books jobs while you sleep."</li>
+            <li>"Fifteen minutes. We'll show you exactly what we'd build. No pressure, no jargon."</li>
+          </ul>
+        </div>
+        <div class="col dont">
+          <h4>Not this</h4>
+          <ul>
+            <li>"Leverage our agentic AI automation platform to optimize lead-capture funnels."</li>
+            <li>"Synergistic digital transformation solutions for SMBs."</li>
+            <li>Anything with an em dash. Use commas, periods, or "to" for ranges.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section>
+      <div class="kicker">06 · Components</div>
+      <h2>The building blocks.</h2>
+      <p class="sublead">Rounded, glassy, glowing. Gradient for the one thing you want clicked, ghost for everything else. Cards float on blur over the brain.</p>
+      <div class="comps">
+        <a href="#" class="btn primary" onclick="return false">Get your free AI audit →</a>
+        <a href="#" class="btn" onclick="return false">See the work</a>
+        <span class="chip-c">AI Consulting</span>
+        <span class="chip-c">Automation</span>
+      </div>
+      <div class="glass" style="margin-top:20px;max-width:420px">
+        <h3>Glass card</h3>
+        <p style="color:var(--muted);font-size:14.5px;margin-top:6px">Semi-transparent, blurred, thin light border. The default container for everything, floating over the dark.</p>
+      </div>
+      <p class="note">Motion: everything eases in on scroll (blur to sharp, up 34px). The brain drifts and pulses like it is thinking, and flares on a click. Calm by default, alive on interaction.</p>
+    </section>
+
+  </div>
+
+  <footer>
+    <div>APEX · Brand Bible v1 · <a href="index.html">apex site</a> · <a href="pitch.html">the pitch</a> · Your business, with a brain.</div>
+  </footer>
+</body>
+</html>

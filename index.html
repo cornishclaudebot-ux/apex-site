@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Apex // AI Consulting, Automation & Web Design in Phoenix" />
 <meta name="twitter:description" content="AI consulting, automation, and custom websites for local Phoenix businesses. AI receptionists, chatbots, missed-call text-back, and CRM automation." />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2336e0ff'/%3E%3Cstop offset='.5' stop-color='%238a5cff'/%3E%3Cstop offset='1' stop-color='%23ff3d8b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%23070810'/%3E%3Ccircle cx='16' cy='16' r='7' fill='url(%23g)'/%3E%3C/svg%3E" />
+<link rel="icon" href="assets/apex-mark.svg" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"Apex","description":"AI consulting, automation, and web design studio for local businesses. AI receptionists, chatbots, missed-call text-back, CRM and workflow automation, and custom websites.","url":"https://cornishclaudebot-ux.github.io/apex-site/","areaServed":["Phoenix","Glendale","Peoria","Mesa","Scottsdale","Tempe","Surprise","Goodyear","Avondale","Arizona West Valley"],"address":{"@type":"PostalAddress","addressLocality":"Phoenix","addressRegion":"AZ","addressCountry":"US"},"serviceType":["AI consulting","AI automation","AI receptionist","AI chatbot","Missed-call text-back","CRM automation","Web design","Local SEO"],"priceRange":"$$"}
 </script>
@@ -263,7 +263,7 @@
   <div class="cursor-dot" id="cursorDot"></div>
 
   <nav id="nav">
-    <div class="brand"><span class="spark"></span>APEX</div>
+    <div class="brand"><img src="assets/apex-mark.svg" alt="Apex brain logo" style="width:26px;height:26px;margin-right:4px" />APEX</div>
     <div class="navlinks">
       <a href="#work">Work</a>
       <a href="#services">Services</a>
@@ -443,6 +443,33 @@
     </div>
   </section>
 
+  <!-- FREE AI AUDIT -->
+  <section id="audit" class="wrap">
+    <div class="sec-label reveal">05 / Start here</div>
+    <h2 class="sec-title reveal d1">Not sure where to start? <span class="grad">Get a free AI audit.</span></h2>
+    <p class="lead reveal d2">Fifteen minutes, no cost, no pressure. We look at how customers find you, book you, and slip away, then show you exactly where you're leaking time and money and what we'd build to fix it. You walk away with a clear plan whether or not you hire us.</p>
+    <div class="grid" style="margin-top:46px">
+      <div class="card reveal" data-cursor>
+        <div class="ic">🔎</div><div class="num">01</div>
+        <h3>We find the leak</h3>
+        <p>A straight teardown of your website, your Google presence, and every missed call or unanswered lead that is quietly costing you jobs.</p>
+      </div>
+      <div class="card reveal d1" data-cursor>
+        <div class="ic">🗺️</div><div class="num">02</div>
+        <h3>You get the plan</h3>
+        <p>The one thing we would build first and what it would do for you, in plain English. No jargon, no six-figure slide deck.</p>
+      </div>
+      <div class="card reveal d2" data-cursor>
+        <div class="ic">⚡</div><div class="num">03</div>
+        <h3>We answer fast</h3>
+        <p>Send the form and you hear back fast, not in three days. Slow follow-up is the exact leak we fix, so we hold ourselves to it too.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:42px">
+      <a href="audit.html" class="btn primary magnetic reveal d1" data-cursor><span class="mag-inner">Claim your free audit →</span></a>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact" class="wrap cta-final">
     <h2 class="reveal">Let's build your<br><span class="grad">unfair advantage.</span></h2>
@@ -456,7 +483,11 @@
         <input name="email" type="email" placeholder="Email" autocomplete="email" required />
         <input name="phone" type="tel" placeholder="Phone (optional)" autocomplete="tel" />
       </div>
+      <div class="frow">
+        <input name="website" type="url" inputmode="url" placeholder="Your website (if you have one)" autocomplete="url" style="grid-column:1/-1" />
+      </div>
       <textarea name="message" rows="3" placeholder="What do you need? A website, more bookings, automation..."></textarea>
+      <input type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" />
       <div class="form-actions">
         <button type="submit" class="btn primary magnetic" data-cursor><span class="mag-inner">Send it →</span></button>
         <a href="#work" class="btn magnetic" data-cursor><span class="mag-inner">See the work again</span></a>
@@ -511,9 +542,9 @@
     }, { rootMargin: '-45% 0px -50% 0px' });
     ['work','services','packages','why','contact'].forEach(id => { const el = document.getElementById(id); if (el) spyIO.observe(el); });
 
-    /* contact form: in-page submit via Web3Forms when configured, mailto fallback otherwise (never a dead form) */
+    /* contact form: in-page submit via FormSubmit (activated 2026-07-02), mailto fallback otherwise (never a dead form) */
     const APEX_EMAIL = 'cornishclaudebot@gmail.com';   // working inbox so the form is never dead; swap to your preferred public email anytime
-    const WEB3FORMS_KEY = '';                 // TODO: paste your free web3forms.com access key to enable in-page submit
+    const FORM_ENDPOINT = 'https://formsubmit.co/ajax/' + APEX_EMAIL;
     const apexForm = document.getElementById('apexForm');
     if (apexForm){
       const fstatus = document.getElementById('formStatus');
@@ -527,14 +558,13 @@
         e.preventDefault();
         const d = Object.fromEntries(new FormData(apexForm).entries());
         if (!d.name || !d.business || !d.email){ fstatus.textContent = 'Please add your name, business, and email.'; fstatus.className = 'form-status err'; return; }
-        if (!WEB3FORMS_KEY){ openMail(d); return; }
         fstatus.textContent = 'Sending...'; fstatus.className = 'form-status';
         try {
-          const res = await fetch('https://api.web3forms.com/submit', { method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
-            body: JSON.stringify({ access_key: WEB3FORMS_KEY, subject: 'New Apex lead from ' + d.business, from_name: 'Apex website', ...d }) });
+          const res = await fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
+            body: JSON.stringify({ _subject: 'New Apex lead from ' + d.business, ...d }) });
           const j = await res.json();
-          if (j.success){ fstatus.textContent = "Got it. We'll reach out within a day."; fstatus.className = 'form-status ok'; apexForm.reset(); }
-          else throw new Error('web3forms');
+          if (j.success === 'true' || j.success === true){ fstatus.textContent = "Got it. We'll reach out within a day."; fstatus.className = 'form-status ok'; apexForm.reset(); }
+          else throw new Error('formsubmit');
         } catch (err){ openMail(d); }
       });
     }

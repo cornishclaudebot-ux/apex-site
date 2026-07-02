@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Apex · Free AI Audit</title>
+<meta name="theme-color" content="#06070b" />
+<meta name="description" content="Get a free AI audit of your Google footprint, website, and funnels. Apex's AI analyzes your business and shows exactly what we can automate for you." />
+<link rel="icon" href="assets/apex-mark.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#06070b; --ink:#f2f4fa; --muted:#aab1c6; --faint:#6b7488;
+    --cyan:#36e0ff; --violet:#8a5cff; --mag:#ff3d8b;
+    --line:rgba(255,255,255,.10); --glass:rgba(255,255,255,.03);
+    --grad:linear-gradient(100deg,#36e0ff,#8a5cff 55%,#ff3d8b);
+    --shadow:0 1px 24px -12px rgba(0,0,0,.8);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.55;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--violet);color:#fff}
+  a{color:inherit}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+
+  /* ambient glow */
+  .orb{position:fixed;border-radius:50%;filter:blur(70px);opacity:.5;z-index:0;pointer-events:none}
+  .orb.a{width:520px;height:520px;background:var(--violet);top:-220px;right:-160px}
+  .orb.b{width:440px;height:440px;background:var(--cyan);bottom:-220px;left:-180px;opacity:.35}
+  .orb.c{width:360px;height:360px;background:var(--mag);top:40%;right:-160px;opacity:.28}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;backdrop-filter:blur(12px);background:rgba(6,7,11,.6);border-bottom:1px solid transparent}
+  .brand{font-family:'Space Grotesk';font-weight:700;letter-spacing:.22em;font-size:15px;display:flex;align-items:center;gap:10px}
+  .mark{width:22px;height:22px;border-radius:6px;background:#070810;border:1px solid var(--line);position:relative}
+  .mark::after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--grad)}
+  .nav-cta{font-size:13px;letter-spacing:.02em;text-decoration:none;color:var(--muted)}
+  .nav-cta:hover{color:var(--ink)}
+
+  /* hero */
+  header.hero{position:relative;z-index:1;padding:64px 0 26px}
+  .eyebrow{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px;font-weight:600}
+  h1{font-family:'Space Grotesk';font-weight:700;line-height:.98;letter-spacing:-.02em;
+    font-size:clamp(34px,6vw,60px);margin:0 0 20px}
+  .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{max-width:660px;color:#cfd4e4;font-size:clamp(16px,2.2vw,19px);margin:0 0 8px}
+  .powered{margin-top:18px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+    display:inline-flex;align-items:center;gap:9px}
+  .powered b{color:var(--muted);font-family:'Space Grotesk';font-weight:600}
+  .dot{width:7px;height:7px;border-radius:50%;background:#3ee08a;box-shadow:0 0 10px #3ee08a}
+
+  /* analyze strip */
+  .analyze{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:34px 0 8px}
+  .acard{background:var(--glass);border:1px solid var(--line);border-radius:16px;padding:20px;backdrop-filter:blur(8px)}
+  .acard .ic{font-size:22px}
+  .acard h3{font-family:'Space Grotesk';font-weight:600;font-size:15.5px;margin:12px 0 6px}
+  .acard p{color:var(--muted);font-size:13.5px;margin:0}
+
+  /* form card */
+  .formwrap{position:relative;z-index:1;margin:40px 0 90px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+    border:1px solid var(--line);border-radius:22px;padding:34px;backdrop-filter:blur(14px);box-shadow:var(--shadow)}
+  .step{border-top:1px solid var(--line);padding:26px 0}
+  .step:first-of-type{border-top:none;padding-top:6px}
+  .step-h{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .step-n{font-family:'Space Grotesk';font-weight:700;font-size:12px;letter-spacing:.12em;color:#06070b;
+    background:var(--grad);border-radius:100px;padding:5px 11px}
+  .step-h h2{font-family:'Space Grotesk';font-weight:600;font-size:19px;margin:0}
+  .step-sub{color:var(--muted);font-size:13.5px;margin:0 0 16px}
+
+  label{display:block;font-size:12px;letter-spacing:.03em;color:var(--faint);margin:0 0 6px;font-weight:600;text-transform:uppercase}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+  .full{grid-column:1/-1}
+  input,textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;
+    color:var(--ink);font:inherit;font-size:15px;padding:13px 15px;transition:border-color .25s,background .25s}
+  input::placeholder,textarea::placeholder{color:#7d8499}
+  input:focus,textarea:focus{outline:none;border-color:var(--cyan);background:rgba(54,224,255,.06)}
+  textarea{resize:vertical;min-height:96px}
+  .hint{font-size:12px;color:var(--faint);margin:7px 2px 0}
+
+  /* google finder */
+  .gfind{display:flex;gap:10px;align-items:stretch}
+  .gfind input{flex:1}
+  .gbtn{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);
+    border:1px solid var(--line);border-radius:12px;color:var(--ink);font:inherit;font-size:13.5px;font-weight:600;
+    padding:0 16px;cursor:pointer;transition:border-color .25s,background .25s}
+  .gbtn:hover{border-color:var(--cyan);background:rgba(54,224,255,.08)}
+
+  /* pain chips */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:4px 0 16px}
+  .chip{position:relative;cursor:pointer;user-select:none}
+  .chip input{position:absolute;opacity:0;pointer-events:none}
+  .chip span{display:inline-block;padding:9px 15px;border-radius:100px;border:1px solid var(--line);
+    background:rgba(255,255,255,.03);font-size:13.5px;color:var(--muted);transition:all .2s}
+  .chip input:checked + span{border-color:var(--violet);background:rgba(138,92,255,.16);color:#fff}
+
+  /* submit */
+  .actions{margin-top:22px}
+  .go{width:100%;border:none;border-radius:14px;background:var(--grad);color:#06070b;
+    font-family:'Space Grotesk';font-weight:700;font-size:16px;letter-spacing:.01em;padding:16px;cursor:pointer;
+    transition:transform .2s,filter .2s}
+  .go:hover{transform:translateY(-2px);filter:brightness(1.06)}
+  .go:disabled{opacity:.6;cursor:not-allowed;transform:none}
+  .reassure{text-align:center;color:var(--faint);font-size:12.5px;margin-top:14px}
+  .status{margin-top:16px;text-align:center;font-size:14.5px;min-height:22px}
+  .status.ok{color:#7ef0b0}
+  .status.err{color:#ff8fae}
+  .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+
+  /* success panel */
+  .done{display:none;position:relative;z-index:1;text-align:center;padding:70px 0 120px}
+  .done.show{display:block}
+  .done .check{width:74px;height:74px;border-radius:50%;margin:0 auto 22px;display:grid;place-items:center;
+    background:rgba(62,224,138,.14);border:1px solid rgba(62,224,138,.5);font-size:34px}
+  .done h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(26px,4vw,38px);margin:0 0 12px}
+  .done p{color:var(--muted);max-width:520px;margin:0 auto 8px;font-size:16px}
+
+  @media(max-width:640px){
+    .analyze{grid-template-columns:1fr}
+    .frow{grid-template-columns:1fr}
+    .gfind{flex-direction:column}
+    .formwrap{padding:24px}
+  }
+</style>
+</head>
+<body>
+  <div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
+
+  <nav>
+    <div class="brand"><img src="assets/apex-mark.svg" alt="Apex brain logo" style="width:24px;height:24px" /> APEX</div>
+    <a class="nav-cta" href="index.html">← Back to Apex</a>
+  </nav>
+
+  <main class="wrap">
+    <header class="hero">
+      <div class="eyebrow">Free AI Audit</div>
+      <h1>See exactly where AI can<br><span class="grad">run your business for you.</span></h1>
+      <p class="sub">Tell us who you are and our AI reads your entire Google footprint, your website, and the funnels you have today. Then we show you what we can automate, and the better system we would build around it. No cost, no pressure, no jargon.</p>
+      <span class="powered"><span class="dot"></span> Analyzed by <b>Apex AI</b> on NVIDIA NeMo Claw</span>
+    </header>
+
+    <section class="analyze" aria-label="What we analyze">
+      <div class="acard"><div class="ic">🔎</div><h3>Your Google footprint</h3><p>Your Business Profile, reviews, and how you rank when locals search for you.</p></div>
+      <div class="acard"><div class="ic">🖥️</div><h3>Your website</h3><p>Speed, booking, lead capture, and every place a customer quietly slips away.</p></div>
+      <div class="acard"><div class="ic">⚙️</div><h3>Your funnels</h3><p>How leads reach you and what happens next, so we can automate the busywork.</p></div>
+    </section>
+
+    <form id="auditForm" class="formwrap" novalidate>
+      <!-- STEP 1 — YOUR BUSINESS -->
+      <div class="step">
+        <div class="step-h"><span class="step-n">01</span><h2>Your business</h2></div>
+        <p class="step-sub">Type your business name, then point out which listing is really you on Google.</p>
+        <label for="business">Business name</label>
+        <input id="business" name="business" type="text" placeholder="e.g. Valley Tire &amp; Auto" autocomplete="organization" required />
+        <div class="hint" style="margin-bottom:16px">&nbsp;</div>
+
+        <label for="google">Which one is you on Google?</label>
+        <div class="gfind">
+          <input id="google" name="google" type="url" inputmode="url" placeholder="Paste your Google listing or Maps link" autocomplete="off" />
+          <button type="button" class="gbtn" id="findBtn">🔗 Find me on Google</button>
+        </div>
+        <p class="hint">Click "Find me on Google", open your listing, then copy the link back into the box so we audit the right business.</p>
+      </div>
+
+      <!-- STEP 2 — HOW TO REACH YOU -->
+      <div class="step">
+        <div class="step-h"><span class="step-n">02</span><h2>How we reach you</h2></div>
+        <p class="step-sub">We send the finished audit here. That is the only reason we ask.</p>
+        <div class="frow">
+          <div><label for="name">Your name</label><input id="name" name="name" type="text" placeholder="First and last" autocomplete="name" required /></div>
+          <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="(602) 555-0123" autocomplete="tel" required /></div>
+        </div>
+        <div class="frow">
+          <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@business.com" autocomplete="email" required /></div>
+          <div><label for="website">Website / domain</label><input id="website" name="website" type="url" inputmode="url" placeholder="yourbusiness.com" autocomplete="url" /></div>
+        </div>
+        <p class="hint">No website yet? Leave it blank, that is often the biggest opportunity.</p>
+      </div>
+
+      <!-- STEP 3 — WHERE IT HURTS -->
+      <div class="step">
+        <div class="step-h"><span class="step-n">03</span><h2>Where it hurts</h2></div>
+        <p class="step-sub">What eats your day? Pick anything that sounds like you, then tell us in your own words.</p>
+        <div class="chips" id="painChips">
+          <label class="chip"><input type="checkbox" name="pain" value="Answering calls and texts"><span>Answering calls &amp; texts</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="Replying to DMs and messages"><span>Replying to DMs</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="Writing quotes and estimates"><span>Quotes &amp; estimates</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="Booking and scheduling"><span>Booking &amp; scheduling</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="Chasing leads and follow-ups"><span>Follow-ups</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="Asking for reviews"><span>Getting reviews</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="Invoicing and payments"><span>Invoicing &amp; payments</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="Social media posting"><span>Social posting</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="Data entry and paperwork"><span>Data entry &amp; paperwork</span></label>
+        </div>
+        <label for="notes">What is the most mundane, time-sucking thing you do every day?</label>
+        <textarea id="notes" name="notes" placeholder="Tell us the tasks that take up your time. The more real, the better the audit."></textarea>
+      </div>
+
+      <!-- honeypot -->
+      <input type="text" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+      <div class="actions">
+        <button type="submit" class="go" id="goBtn">Run my free AI audit →</button>
+        <p class="reassure">Takes 60 seconds. We only email the audit, we never sell your info.</p>
+        <div class="status" id="status" aria-live="polite"></div>
+      </div>
+    </form>
+
+    <section class="done" id="done">
+      <div class="check">✓</div>
+      <h2 class="grad">Your audit is on the way.</h2>
+      <p>Our AI is reading your Google footprint, your website, and your funnels right now.</p>
+      <p>You will get a clear, plain-English breakdown of what we can automate, sent to the email you gave us. Watch your inbox.</p>
+    </section>
+  </main>
+
+<script>
+  /* ============================================================
+     CONFIG — wire this to your Apex Audit Engine (~/apex-audit-engine).
+     - AUDIT_ENDPOINT: the running server's POST /audit URL.
+       Leave "" until the engine is hosted; leads then flow via FORM_ENDPOINT.
+     - FORM_ENDPOINT: FormSubmit AJAX endpoint — emails every lead to the
+       inbox so no submission is ever lost.
+     - FALLBACK_EMAIL: last resort, opens a prefilled email in the
+       visitor's mail app if both endpoints fail.
+     ============================================================ */
+  const CONFIG = {
+    AUDIT_ENDPOINT: "",           // e.g. "https://audit.apex.../audit"
+    FORM_ENDPOINT: "https://formsubmit.co/ajax/cornishclaudebot@gmail.com",  // activated 2026-07-02
+    FALLBACK_EMAIL: "cornishclaudebot@gmail.com"
+  };
+
+  const form   = document.getElementById('auditForm');
+  const goBtn  = document.getElementById('goBtn');
+  const status = document.getElementById('status');
+  const done   = document.getElementById('done');
+
+  /* Find-me-on-Google: open a Maps search for the typed business name */
+  document.getElementById('findBtn').addEventListener('click', () => {
+    const biz = document.getElementById('business').value.trim();
+    const q = biz ? encodeURIComponent(biz) : '';
+    window.open('https://www.google.com/maps/search/' + q, '_blank', 'noopener');
+    if (!biz) setStatus('Type your business name first, then click again.', 'err');
+  });
+
+  function setStatus(msg, kind){ status.textContent = msg; status.className = 'status ' + (kind||''); }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (form.botcheck.value) return;                 // bot trap
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.pain = [...form.querySelectorAll('input[name="pain"]:checked')].map(c => c.value);
+    delete data.botcheck;
+
+    if (!data.business || !data.name || !data.email || !data.phone){
+      setStatus('Please add your business, name, email, and phone.', 'err'); return;
+    }
+
+    goBtn.disabled = true; setStatus('Sending your details to the audit engine…');
+
+    try {
+      if (CONFIG.AUDIT_ENDPOINT){
+        const res = await fetch(CONFIG.AUDIT_ENDPOINT, {
+          method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error('bad status ' + res.status);
+      } else if (CONFIG.FORM_ENDPOINT){
+        const res = await fetch(CONFIG.FORM_ENDPOINT, {
+          method:'POST', headers:{'Content-Type':'application/json', 'Accept':'application/json'},
+          body: JSON.stringify({ _subject: 'Free AI Audit — ' + data.business, ...data, pain: data.pain.join(', ') })
+        });
+        const j = await res.json();
+        if (!(j.success === 'true' || j.success === true)) throw new Error('formsubmit');
+      } else if (CONFIG.FALLBACK_EMAIL){
+        const body = encodeURIComponent(
+          `New Free AI Audit request\n\n` +
+          `Business: ${data.business}\nGoogle: ${data.google||'(none)'}\n` +
+          `Name: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email}\nWebsite: ${data.website||'(none)'}\n\n` +
+          `Pain points: ${data.pain.join(', ')||'(none picked)'}\n\nNotes: ${data.notes||''}`
+        );
+        window.location.href = `mailto:${CONFIG.FALLBACK_EMAIL}?subject=${encodeURIComponent('Free AI Audit — '+data.business)}&body=${body}`;
+      } else {
+        console.log('[Apex audit — demo mode] payload:', data);  // wire CONFIG to go live
+        await new Promise(r => setTimeout(r, 700));
+      }
+      form.style.display = 'none';
+      done.classList.add('show');
+      done.scrollIntoView({ behavior:'smooth' });
+    } catch (err) {
+      goBtn.disabled = false;
+      setStatus('Something went wrong sending that. Try again, or email us directly.', 'err');
+    }
+  });
+</script>
+</body>
+</html>
