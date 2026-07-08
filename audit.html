@@ -6,6 +6,12 @@
 <title>Apex · Free AI Audit</title>
 <meta name="theme-color" content="#06070b" />
 <meta name="description" content="Get a free AI audit of your Google footprint, website, and funnels. Apex's AI analyzes your business and shows exactly what we can automate for you." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Free AI Audit · Apex" />
+<meta property="og:description" content="Our AI reads your Google footprint, website, and funnels, then shows exactly what we would automate. Free, fast, no pressure. Builds priced up front: $3,000 to $10,000." />
+<meta property="og:image" content="https://cornishclaudebot-ux.github.io/apex-site/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cornishclaudebot-ux.github.io/apex-site/assets/og-image.png" />
 <link rel="icon" href="assets/apex-mark.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -75,10 +81,14 @@
   label{display:block;font-size:12px;letter-spacing:.03em;color:var(--faint);margin:0 0 6px;font-weight:600;text-transform:uppercase}
   .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
   .full{grid-column:1/-1}
-  input,textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;
+  input,textarea,select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;
     color:var(--ink);font:inherit;font-size:15px;padding:13px 15px;transition:border-color .25s,background .25s}
   input::placeholder,textarea::placeholder{color:#7d8499}
-  input:focus,textarea:focus{outline:none;border-color:var(--cyan);background:rgba(54,224,255,.06)}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--cyan);background:rgba(54,224,255,.06)}
+  select{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23aab1c6' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 15px center}
+  select option{background:#0b0d15;color:var(--ink)}
   textarea{resize:vertical;min-height:96px}
   .hint{font-size:12px;color:var(--faint);margin:7px 2px 0}
 
@@ -97,6 +107,7 @@
   .chip span{display:inline-block;padding:9px 15px;border-radius:100px;border:1px solid var(--line);
     background:rgba(255,255,255,.03);font-size:13.5px;color:var(--muted);transition:all .2s}
   .chip input:checked + span{border-color:var(--violet);background:rgba(138,92,255,.16);color:#fff}
+  .chip input:focus-visible + span{outline:2px solid var(--cyan);outline-offset:2px}
 
   /* submit */
   .actions{margin-top:22px}
@@ -140,6 +151,7 @@
       <div class="eyebrow">Free AI Audit</div>
       <h1>See exactly where AI can<br><span class="grad">run your business for you.</span></h1>
       <p class="sub">Tell us who you are and our AI reads your entire Google footprint, your website, and the funnels you have today. Then we show you what we can automate, and the better system we would build around it. No cost, no pressure, no jargon.</p>
+      <p class="sub" style="font-size:14.5px;color:#aab1c6">If we end up working together, builds run $3,000 to $10,000 one-time and the monthly partnership after is optional. You will never hear a surprise number on a call.</p>
       <span class="powered"><span class="dot"></span> Analyzed by <b>Apex AI</b> on NVIDIA NeMo Claw</span>
     </header>
 
@@ -149,21 +161,45 @@
       <div class="acard"><div class="ic">⚙️</div><h3>Your funnels</h3><p>How leads reach you and what happens next, so we can automate the busywork.</p></div>
     </section>
 
-    <form id="auditForm" class="formwrap" novalidate>
+    <!-- action/method = no-JS fallback: FormSubmit accepts plain HTML POSTs, so the
+         money form still delivers leads when fetch/JS is unavailable (old Androids,
+         Opera Mini). _next bounces back here with ?sent=1 which shows the success panel. -->
+    <form id="auditForm" class="formwrap" action="https://formsubmit.co/cornishclaudebot@gmail.com" method="POST" novalidate>
+      <input type="hidden" name="_subject" value="Free AI Audit request (no-JS path)" />
+      <input type="hidden" name="_next" value="https://cornishclaudebot-ux.github.io/apex-site/audit.html?sent=1" />
       <!-- STEP 1 — YOUR BUSINESS -->
       <div class="step">
         <div class="step-h"><span class="step-n">01</span><h2>Your business</h2></div>
         <p class="step-sub">Type your business name, then point out which listing is really you on Google.</p>
-        <label for="business">Business name</label>
-        <input id="business" name="business" type="text" placeholder="e.g. Valley Tire &amp; Auto" autocomplete="organization" required />
-        <div class="hint" style="margin-bottom:16px">&nbsp;</div>
+        <div class="frow">
+          <div>
+            <label for="business">Business name</label>
+            <input id="business" name="business" type="text" placeholder="e.g. Valley Tire &amp; Auto" autocomplete="organization" required />
+          </div>
+          <div>
+            <label for="vertical">What kind of business?</label>
+            <select id="vertical" name="vertical">
+              <option value="">Pick the closest fit</option>
+              <option>Restaurant / food truck / catering</option>
+              <option>Auto / tire shop</option>
+              <option>Salon / barber / beauty / spa</option>
+              <option>Trades (electric, HVAC, plumbing, fencing, concrete, handyman)</option>
+              <option>Landscaping / pest control</option>
+              <option>Events / party rental / photography</option>
+              <option>Retail / print / fabrication</option>
+              <option>Gym / fitness / wellness</option>
+              <option>Medical / dental / professional services</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
 
-        <label for="google">Which one is you on Google?</label>
+        <label for="google">Which one is you on Google? <span style="text-transform:none;color:#7d8499">(optional, we can find you from your business name)</span></label>
         <div class="gfind">
-          <input id="google" name="google" type="url" inputmode="url" placeholder="Paste your Google listing or Maps link" autocomplete="off" />
+          <input id="google" name="google" type="url" inputmode="url" placeholder="Paste your Google listing or Maps link (or skip this)" autocomplete="off" />
           <button type="button" class="gbtn" id="findBtn">🔗 Find me on Google</button>
         </div>
-        <p class="hint">Click "Find me on Google", open your listing, then copy the link back into the box so we audit the right business.</p>
+        <p class="hint">If pasting a link is a hassle (especially on a phone), skip it. Your business name and city are enough for our AI to find the right listing.</p>
       </div>
 
       <!-- STEP 2 — HOW TO REACH YOU -->
@@ -172,13 +208,13 @@
         <p class="step-sub">We send the finished audit here. That is the only reason we ask.</p>
         <div class="frow">
           <div><label for="name">Your name</label><input id="name" name="name" type="text" placeholder="First and last" autocomplete="name" required /></div>
-          <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="(602) 555-0123" autocomplete="tel" required /></div>
+          <div><label for="phone">Phone <span style="text-transform:none;color:#7d8499">(optional, only if you would rather talk than read)</span></label><input id="phone" name="phone" type="tel" placeholder="(602) 555-0123" autocomplete="tel" /></div>
         </div>
         <div class="frow">
           <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@business.com" autocomplete="email" required /></div>
           <div><label for="website">Website / domain</label><input id="website" name="website" type="url" inputmode="url" placeholder="yourbusiness.com" autocomplete="url" /></div>
         </div>
-        <p class="hint">No website yet? Leave it blank, that is often the biggest opportunity.</p>
+        <p class="hint">No website yet? Leave it blank, that is often the biggest opportunity. Rather just talk to a person? Call <a href="tel:+14807190052" style="color:var(--ink)">(480) 719-0052</a>.</p>
       </div>
 
       <!-- STEP 3 — WHERE IT HURTS -->
@@ -198,6 +234,46 @@
         </div>
         <label for="notes">What is the most mundane, time-sucking thing you do every day?</label>
         <textarea id="notes" name="notes" placeholder="Tell us the tasks that take up your time. The more real, the better the audit."></textarea>
+
+        <div class="frow" style="margin-top:16px">
+          <div>
+            <label for="leadsource">How do most customers find you today?</label>
+            <select id="leadsource" name="leadsource">
+              <option value="">Pick the biggest one</option>
+              <option>Phone calls</option>
+              <option>Google search / Maps</option>
+              <option>Instagram or Facebook</option>
+              <option>Word of mouth / referrals</option>
+              <option>Walk-ins</option>
+              <option>My website</option>
+            </select>
+          </div>
+          <div>
+            <label for="hours">Hours a week you lose to busywork</label>
+            <select id="hours" name="hours">
+              <option value="">Honest guess</option>
+              <option>Under 5 hours</option>
+              <option>5 to 10 hours</option>
+              <option>10 to 20 hours</option>
+              <option>20+ hours, it runs my life</option>
+            </select>
+          </div>
+        </div>
+        <label for="tools" style="margin-top:2px">What do you run the business on now? <span style="text-transform:none;color:#7d8499">(optional)</span></label>
+        <input id="tools" name="tools" type="text" placeholder="e.g. paper calendar, QuickBooks, Square, a nephew with a laptop" />
+      </div>
+
+      <!-- STEP 4 — KNOW THE NUMBERS -->
+      <div class="step">
+        <div class="step-h"><span class="step-n">04</span><h2>Know the numbers before we talk</h2></div>
+        <p class="step-sub">No mystery pricing. Builds run $3,000 to $10,000 one-time, and a monthly partnership after that is optional. Pick what fits your appetite so the call is about the plan, not the price.</p>
+        <div class="chips" id="budgetChips" role="radiogroup" aria-label="Budget fit">
+          <label class="chip"><input type="radio" name="budget" value="Onboarding $3,000"><span>Onboarding · $3,000 build</span></label>
+          <label class="chip"><input type="radio" name="budget" value="Growth $6,000"><span>Growth · $6,000 build</span></label>
+          <label class="chip"><input type="radio" name="budget" value="Autopilot $10,000"><span>Autopilot · $10,000 build</span></label>
+          <label class="chip"><input type="radio" name="budget" value="Not sure yet" checked><span>Not sure yet, audit me first</span></label>
+        </div>
+        <p class="hint">Monthly partnerships run $2,000 to $3,000 and are always optional. Company-wide strategy (Consultation) starts at $15,000.</p>
       </div>
 
       <!-- honeypot -->
@@ -210,11 +286,13 @@
       </div>
     </form>
 
-    <section class="done" id="done">
+    <section class="done" id="done" role="status" tabindex="-1">
       <div class="check">✓</div>
       <h2 class="grad">Your audit is on the way.</h2>
       <p>Our AI is reading your Google footprint, your website, and your funnels right now.</p>
       <p>You will get a clear, plain-English breakdown of what we can automate, sent to the email you gave us. Watch your inbox.</p>
+      <p style="margin-top:26px"><b style="color:var(--ink)">Want to skip the line?</b> <span id="doneBookLead">Grab 15 minutes with Aiden now and we will walk the audit together.</span></p>
+      <a id="doneBook" href="index.html#contact" style="display:inline-block;margin-top:14px;padding:15px 30px;border-radius:100px;background:var(--grad);color:#06070b;font-family:'Space Grotesk';font-weight:700;font-size:15px;text-decoration:none">Book my 15-min call →</a>
     </section>
   </main>
 
@@ -231,8 +309,35 @@
   const CONFIG = {
     AUDIT_ENDPOINT: "",           // e.g. "https://audit.apex.../audit"
     FORM_ENDPOINT: "https://formsubmit.co/ajax/cornishclaudebot@gmail.com",  // activated 2026-07-02
-    FALLBACK_EMAIL: "cornishclaudebot@gmail.com"
+    FALLBACK_EMAIL: "cornishclaudebot@gmail.com",
+    CALENDLY_URL: "https://calendly.com/apexaz"   // live 2026-07-07: 15-Minute Intro Call with Aiden
   };
+
+  /* tier prefill: packages page sends ?tier=onboarding|growth|autopilot */
+  (function(){
+    const params = new URLSearchParams(location.search);
+    const tier = params.get('tier');
+    const map = { onboarding:'Onboarding $3,000', growth:'Growth $6,000', autopilot:'Autopilot $10,000' };
+    if (tier && map[tier]){
+      const r = document.querySelector(`input[name="budget"][value="${map[tier]}"]`);
+      if (r) r.checked = true;
+    }
+    // returning from the no-JS FormSubmit redirect: show the success panel
+    if (params.get('sent') === '1'){
+      document.getElementById('auditForm').style.display = 'none';
+      document.getElementById('done').classList.add('show');
+    }
+  })();
+  // Honest booking CTA: a real calendar when configured, a real promise when not.
+  // Never a button that dumps people on another blank form.
+  if (CONFIG.CALENDLY_URL){
+    const b = document.getElementById('doneBook');
+    b.href = CONFIG.CALENDLY_URL; b.target = '_blank'; b.rel = 'noopener';
+  } else {
+    const b = document.getElementById('doneBook');
+    document.getElementById('doneBookLead').textContent = 'Reply to your audit email with the word CALL and Aiden will call you personally.';
+    b.style.display = 'none';
+  }
 
   const form   = document.getElementById('auditForm');
   const goBtn  = document.getElementById('goBtn');
@@ -256,9 +361,10 @@
     const data = Object.fromEntries(new FormData(form).entries());
     data.pain = [...form.querySelectorAll('input[name="pain"]:checked')].map(c => c.value);
     delete data.botcheck;
+    delete data._subject; delete data._next;   // no-JS fallback fields must not override the AJAX payload
 
-    if (!data.business || !data.name || !data.email || !data.phone){
-      setStatus('Please add your business, name, email, and phone.', 'err'); return;
+    if (!data.business || !data.name || !data.email){
+      setStatus('Please add your business, name, and email.', 'err'); return;
     }
 
     goBtn.disabled = true; setStatus('Sending your details to the audit engine…');
@@ -279,9 +385,11 @@
       } else if (CONFIG.FALLBACK_EMAIL){
         const body = encodeURIComponent(
           `New Free AI Audit request\n\n` +
-          `Business: ${data.business}\nGoogle: ${data.google||'(none)'}\n` +
+          `Business: ${data.business}\nType: ${data.vertical||'(not picked)'}\nGoogle: ${data.google||'(none)'}\n` +
           `Name: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email}\nWebsite: ${data.website||'(none)'}\n\n` +
-          `Pain points: ${data.pain.join(', ')||'(none picked)'}\n\nNotes: ${data.notes||''}`
+          `Pain points: ${data.pain.join(', ')||'(none picked)'}\n` +
+          `Leads come from: ${data.leadsource||'(not picked)'}\nHours lost weekly: ${data.hours||'(not picked)'}\n` +
+          `Runs on: ${data.tools||'(not given)'}\nBudget fit: ${data.budget||'Not sure yet'}\n\nNotes: ${data.notes||''}`
         );
         window.location.href = `mailto:${CONFIG.FALLBACK_EMAIL}?subject=${encodeURIComponent('Free AI Audit — '+data.business)}&body=${body}`;
       } else {
@@ -291,6 +399,7 @@
       form.style.display = 'none';
       done.classList.add('show');
       done.scrollIntoView({ behavior:'smooth' });
+      done.focus({ preventScroll: true });   // announce success to screen readers, keep keyboard focus alive
     } catch (err) {
       goBtn.disabled = false;
       setStatus('Something went wrong sending that. Try again, or email us directly at ' + CONFIG.FALLBACK_EMAIL + '.', 'err');

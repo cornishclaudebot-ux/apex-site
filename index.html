@@ -9,17 +9,21 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Apex // AI Consulting, Automation & Web Design in Phoenix" />
 <meta property="og:description" content="AI consulting, automation, and custom websites for local Phoenix businesses. AI receptionists, chatbots, missed-call text-back, CRM automation, and sites that convert." />
-<!-- TODO: add og:image (a 1200x630 screenshot of this site) once deployed to your domain -->
-<meta name="twitter:card" content="summary" />
+<meta property="og:image" content="https://cornishclaudebot-ux.github.io/apex-site/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cornishclaudebot-ux.github.io/apex-site/assets/og-image.png" />
 <meta name="twitter:title" content="Apex // AI Consulting, Automation & Web Design in Phoenix" />
 <meta name="twitter:description" content="AI consulting, automation, and custom websites for local Phoenix businesses. AI receptionists, chatbots, missed-call text-back, and CRM automation." />
 <link rel="icon" href="assets/apex-mark.svg" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"Apex","description":"AI consulting, automation, and web design studio for local businesses. AI receptionists, chatbots, missed-call text-back, CRM and workflow automation, and custom websites.","url":"https://cornishclaudebot-ux.github.io/apex-site/","areaServed":["Phoenix","Glendale","Peoria","Mesa","Scottsdale","Tempe","Surprise","Goodyear","Avondale","Arizona West Valley"],"address":{"@type":"PostalAddress","addressLocality":"Phoenix","addressRegion":"AZ","addressCountry":"US"},"serviceType":["AI consulting","AI automation","AI receptionist","AI chatbot","Missed-call text-back","CRM automation","Web design","Local SEO"],"priceRange":"$$"}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Apex","founder":{"@type":"Person","name":"Aiden Cornish"},"telephone":"+1-480-719-0052","email":"cornishclaudebot@gmail.com","description":"AI consulting, automation, and web design studio for local businesses. AI receptionists, chatbots, missed-call text-back, CRM and workflow automation, and custom websites.","url":"https://cornishclaudebot-ux.github.io/apex-site/","areaServed":["Phoenix","Glendale","Peoria","Mesa","Scottsdale","Tempe","Surprise","Goodyear","Avondale","Arizona West Valley"],"address":{"@type":"PostalAddress","addressLocality":"Phoenix","addressRegion":"AZ","addressCountry":"US"},"serviceType":["AI consulting","AI automation","AI receptionist","AI chatbot","Missed-call text-back","CRM automation","Web design","Local SEO"],"priceRange":"$3,000 - $15,000","offers":[{"@type":"Offer","name":"Onboarding","price":"3000","priceCurrency":"USD"},{"@type":"Offer","name":"Growth","price":"6000","priceCurrency":"USD"},{"@type":"Offer","name":"Autopilot","price":"10000","priceCurrency":"USD"},{"@type":"Offer","name":"Consultation","price":"15000","priceCurrency":"USD"}]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>document.documentElement.classList.add('js')</script><!-- classic script: reveal-hiding only applies when JS actually runs -->
 <style>
   :root{
     --bg:#06070b;
@@ -38,10 +42,13 @@
   body{
     background:var(--bg);color:var(--ink);
     font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.55;
-    overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;
   }
-  body.no-webgl{cursor:auto}
-  @media (pointer:coarse){ body{cursor:auto} }
+  /* the custom cursor only replaces the system pointer when WebGL actually booted
+     and the user hasn't asked for reduced motion (persona audit: enlarged system
+     pointers and old machines must never lose their cursor) */
+  body.webgl-cursor{cursor:none}
+  @media (pointer:coarse), (prefers-reduced-motion:reduce), (forced-colors:active){ body.webgl-cursor{cursor:auto} }
   ::selection{background:var(--violet);color:#fff}
 
   #bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
@@ -61,7 +68,8 @@
 
   /* custom cursor */
   .cursor,.cursor-dot{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;
-    mix-blend-mode:difference;will-change:transform}
+    mix-blend-mode:difference;will-change:transform;display:none}
+  body.webgl-cursor .cursor,body.webgl-cursor .cursor-dot{display:block}
   .cursor{width:36px;height:36px;border:1.5px solid #fff;transform:translate(-50%,-50%);
     transition:width .25s,height .25s,background .25s,opacity .3s}
   .cursor-dot{width:5px;height:5px;background:#fff;transform:translate(-50%,-50%)}
@@ -80,7 +88,8 @@
   .nav-cta{padding:9px 18px;border-radius:100px;background:rgba(255,255,255,.06);border:1px solid var(--line);
     color:var(--ink)!important;font-weight:600}
   .nav-cta:hover{border-color:rgba(255,255,255,.4)}
-  @media(max-width:760px){.navlinks a:not(.nav-cta){display:none}}
+  @media(max-width:760px){.navlinks a:not(.nav-cta):not(.keep-mobile){display:none}
+    .navlinks{gap:16px}}
 
   /* hero */
   header{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;
@@ -199,7 +208,33 @@
   .pkg .badge{position:absolute;top:-11px;left:30px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
     font-weight:700;color:#06070b;background:var(--grad);padding:5px 13px;border-radius:100px}
   .pkg .pname{font-family:'Space Grotesk';font-weight:600;font-size:23px;margin-bottom:7px}
-  .pkg .ptag{color:var(--cyan);font-size:13.5px;letter-spacing:.02em;margin-bottom:24px}
+  .pkg .ptag{color:var(--cyan);font-size:13.5px;letter-spacing:.02em;margin-bottom:18px}
+  .pkg .price{font-family:'Space Grotesk';font-weight:700;font-size:36px;line-height:1;letter-spacing:-.01em;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:4px}
+  .pkg .pmo{color:var(--muted);font-size:13px;margin-bottom:22px}
+  .pkg .pmo b{color:#d4d8e6;font-weight:600}
+
+  /* instant estimator */
+  .est{margin-top:64px;background:var(--glass);border:1px solid var(--line);border-radius:22px;padding:38px 34px;
+    backdrop-filter:blur(16px)}
+  .est h3{font-family:'Space Grotesk';font-weight:700;font-size:clamp(22px,3vw,30px);margin-bottom:8px;text-align:center}
+  .est .est-sub{color:var(--muted);font-size:14.5px;text-align:center;margin-bottom:28px}
+  .est .q{margin-bottom:22px}
+  .est .q .ql{font-family:'Space Grotesk';font-weight:600;font-size:15px;margin-bottom:12px;display:block}
+  .est .opts{display:flex;flex-wrap:wrap;gap:10px}
+  .est .opt{position:relative;cursor:pointer;user-select:none}
+  .est .opt input{position:absolute;opacity:0;pointer-events:none}
+  .est .opt span{display:inline-block;padding:11px 18px;border-radius:100px;border:1px solid var(--line);
+    background:rgba(255,255,255,.03);font-size:14px;color:var(--muted);transition:all .2s}
+  .est .opt input:checked + span{border-color:var(--violet);background:rgba(138,92,255,.18);color:#fff}
+  .est .opt input:focus-visible + span{outline:2px solid var(--cyan);outline-offset:2px}
+  .est .est-result{display:none;margin-top:26px;padding:26px;border-radius:16px;text-align:center;
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.18)}
+  .est .est-result.show{display:block}
+  .est .est-result .rt{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+  .est .est-result .rp{font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,4.5vw,44px);line-height:1;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .est .est-result .rm{color:var(--muted);font-size:14.5px;margin:10px 0 20px}
   .pkg ul{list-style:none;margin:0 0 28px;padding:0;display:flex;flex-direction:column;gap:13px}
   .pkg li{display:flex;gap:11px;font-size:14.5px;color:#d4d8e6;line-height:1.45}
   .pkg li::before{content:"✓";flex:none;color:var(--cyan);font-weight:700;font-size:14px;margin-top:1px}
@@ -238,10 +273,10 @@
   .foot-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:13.5px}
   .foot-row a{color:var(--muted);text-decoration:none}.foot-row a:hover{color:var(--ink)}
 
-  /* reveal */
-  .reveal{opacity:0;transform:translateY(34px);filter:blur(6px);
+  /* reveal: content is only hidden when JS runs (html.js), so no-JS browsers see everything */
+  html.js .reveal{opacity:0;transform:translateY(34px);filter:blur(6px);
     transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1),filter 1s}
-  .reveal.in{opacity:1;transform:none;filter:none}
+  html.js .reveal.in{opacity:1;transform:none;filter:none}
   .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
 
   @keyframes fadeUp{to{opacity:1;transform:none}}
@@ -267,9 +302,10 @@
     <div class="navlinks">
       <a href="#work">Work</a>
       <a href="#services">Services</a>
-      <a href="#packages">Packages</a>
+      <a href="#packages" class="keep-mobile">Pricing</a>
       <a href="#why">Why Apex</a>
-      <a href="#contact" class="nav-cta">Book a call</a>
+      <a href="#contact">Book a call</a>
+      <a href="audit.html" class="nav-cta">Free AI audit</a>
     </div>
   </nav>
 
@@ -278,8 +314,8 @@
     <h1 class="hero-title"><span>A</span><span>P</span><span>E</span><span>X</span></h1>
     <p class="hero-sub">AI consulting, automation, and custom websites for local businesses. We find where you're losing time and customers, then build the systems that get you found, booked, and running on autopilot.</p>
     <div class="cta-row">
-      <a href="#contact" class="btn primary magnetic" data-cursor><span class="mag-inner">Book a 15-min call →</span></a>
-      <a href="#work" class="btn magnetic" data-cursor><span class="mag-inner">See the work</span></a>
+      <a href="audit.html" class="btn primary magnetic" data-cursor><span class="mag-inner">Get your free AI audit →</span></a>
+      <a href="#contact" class="btn magnetic book-15" data-cursor><span class="mag-inner">Book a 15-min call</span></a>
     </div>
     <div class="click-hint"><span class="pip"></span> Click anywhere to light up the brain</div>
   </header>
@@ -302,6 +338,7 @@
     <div class="sec-label reveal">01 / Real work, live right now</div>
     <h2 class="sec-title reveal d1">We don't pitch mockups. <span class="grad">We send you a link.</span></h2>
     <p class="lead reveal d2">Real businesses, running on sites and systems we built. Here is how we help them get found, get booked, and look bigger than they are. Click through and see for yourself.</p>
+    <p class="lead reveal d2" style="margin-top:14px;font-size:15px">The same booking, follow-up, and missed-call automation behind these builds is what we install for <b style="color:var(--ink)">tire shops, electricians, salons, restaurants, landscapers, and pest control</b>. Your trade not pictured yet? That is exactly what the free audit is for.</p>
     <div class="work">
       <a href="https://dartyforlife.com" target="_blank" rel="noopener" class="reveal" data-cursor>
         <div class="tag">Events · Ticketing</div>
@@ -371,45 +408,86 @@
   <section id="packages" class="wrap">
     <div class="sec-label reveal">03 / Packages</div>
     <h2 class="sec-title reveal d1">Pick where you are now. <span class="grad">We take it from there.</span></h2>
-    <p class="lead reveal d2">Every business is in a different spot, so we package the work into three. Start where it makes sense and move up as you grow.</p>
+    <p class="lead reveal d2">Every business is in a different spot, so we package the work into three. Real prices, right here, so you know exactly what you are walking into before we ever talk.</p>
     <div class="pkgs">
       <div class="pkg reveal" data-cursor>
-        <div class="pname">Launch</div>
+        <div class="pname">Onboarding</div>
         <div class="ptag">Get online and bookable</div>
+        <div class="price">$3,000</div>
+        <div class="pmo">one-time build · then <b>$2,000/mo</b> optional partnership</div>
         <ul>
           <li>Custom, mobile-first website</li>
           <li>Online booking or quote form</li>
           <li>Google Business Profile set up right</li>
           <li>Live in weeks, not months</li>
         </ul>
-        <a href="#contact" class="btn magnetic" data-cursor><span class="mag-inner">Book a call</span></a>
+        <a href="audit.html?tier=onboarding" class="btn magnetic book-call" data-cursor><span class="mag-inner">Start with the free audit</span></a>
       </div>
-      <div class="pkg featured reveal d1" data-cursor>
-        <div class="badge">Most popular</div>
+      <div class="pkg reveal d1" data-cursor>
         <div class="pname">Growth</div>
         <div class="ptag">Turn traffic into booked jobs</div>
+        <div class="price">$6,000</div>
+        <div class="pmo">one-time build · then <b>$2,500/mo</b> optional partnership</div>
         <ul>
-          <li>Everything in <b>Launch</b></li>
+          <li>Everything in <b>Onboarding</b></li>
           <li>Lead capture with instant follow-up</li>
           <li>Review-request flow for more 5-star reviews</li>
           <li>Monthly updates, SEO and speed tuning</li>
         </ul>
-        <a href="#contact" class="btn primary magnetic" data-cursor><span class="mag-inner">Book a call →</span></a>
+        <a href="audit.html?tier=growth" class="btn magnetic book-call" data-cursor><span class="mag-inner">Start with the free audit</span></a>
       </div>
-      <div class="pkg reveal d2" data-cursor>
+      <div class="pkg featured reveal d2" data-cursor>
+        <div class="badge">Most popular</div>
         <div class="pname">Autopilot</div>
         <div class="ptag">Run the back office on AI</div>
+        <div class="price">$10,000</div>
+        <div class="pmo">one-time build · then <b>$3,000/mo</b> optional partnership</div>
         <ul>
           <li>Everything in <b>Growth</b></li>
           <li>Custom AI for inbox, quoting and scheduling</li>
           <li>Books, payments and CRM wired together</li>
           <li>Live dashboard of leads and revenue</li>
         </ul>
-        <a href="#contact" class="btn magnetic" data-cursor><span class="mag-inner">Book a call</span></a>
+        <a href="audit.html?tier=autopilot" class="btn primary magnetic" data-cursor><span class="mag-inner">Start with the free audit →</span></a>
       </div>
     </div>
-    <!-- TODO: set exact per-package prices once you lock them. Section note below uses your stated range. -->
-    <p class="pkgs-note reveal d1">Every engagement starts with a one-time build, then a <b>monthly partnership, typically $2k to $3k a month</b>. We tailor the exact scope to your business on a quick call.</p>
+    <p class="pkgs-note reveal d1">Need company-wide AI strategy instead? <b>Consultation engagements start at $15,000.</b> Every build can roll into a monthly partnership, and the exact scope gets confirmed on a quick call. No surprise invoices, ever.</p>
+
+    <!-- INSTANT ESTIMATE -->
+    <div class="est reveal d2" id="estimate">
+      <h3>What would it cost <span class="grad">your</span> business?</h3>
+      <p class="est-sub">Answer three questions and get your number right now. The free audit confirms it before you ever pay a dollar.</p>
+      <div class="q">
+        <span class="ql">1. Do you have a website today?</span>
+        <div class="opts" role="radiogroup" aria-label="Website status">
+          <label class="opt"><input type="radio" name="est-site" value="none"><span>No website</span></label>
+          <label class="opt"><input type="radio" name="est-site" value="broken"><span>Yes, but it is old or broken</span></label>
+          <label class="opt"><input type="radio" name="est-site" value="good"><span>Yes, and it works fine</span></label>
+        </div>
+      </div>
+      <div class="q">
+        <span class="ql">2. What happens to leads after they find you?</span>
+        <div class="opts" role="radiogroup" aria-label="Lead handling">
+          <label class="opt"><input type="radio" name="est-leads" value="lost"><span>Missed calls and slow replies lose some</span></label>
+          <label class="opt"><input type="radio" name="est-leads" value="manual"><span>I handle every one myself</span></label>
+          <label class="opt"><input type="radio" name="est-leads" value="ok"><span>They get handled fine</span></label>
+        </div>
+      </div>
+      <div class="q">
+        <span class="ql">3. Want AI running the back office (quotes, scheduling, follow-ups, books)?</span>
+        <div class="opts" role="radiogroup" aria-label="Back office AI">
+          <label class="opt"><input type="radio" name="est-ai" value="yes"><span>Yes, automate as much as possible</span></label>
+          <label class="opt"><input type="radio" name="est-ai" value="some"><span>Some of it, start small</span></label>
+          <label class="opt"><input type="radio" name="est-ai" value="no"><span>Not yet</span></label>
+        </div>
+      </div>
+      <div class="est-result" id="estResult" aria-live="polite">
+        <div class="rt" id="estTier"></div>
+        <div class="rp" id="estPrice"></div>
+        <div class="rm" id="estMo"></div>
+        <a href="audit.html" id="estCta" class="btn primary magnetic" data-cursor><span class="mag-inner">Lock it in with a free audit →</span></a>
+      </div>
+    </div>
   </section>
 
   <!-- WHY APEX -->
@@ -418,12 +496,13 @@
       <div>
         <div class="sec-label reveal">04 / Why Apex</div>
         <h2 class="sec-title reveal d1">Built in code. <span class="grad">Owned by you.</span></h2>
-        <p class="lead reveal d2">Most "web guys" hand you a template on a platform you rent forever. We write real systems you own, that plug into the tools you already use, and that we keep improving every month. The build gets you in the door. The monthly partnership is where we make you money.</p>
+        <p class="lead reveal d2">Most "web guys" hand you a template on a platform you rent forever. We write real systems you own, that plug into the tools you already use. Every build stands on its own: you own it outright and owe nothing more. If you want us to keep sharpening it every month, that is what the optional partnership is for.</p>
       </div>
       <div class="reveal d2">
         <div class="spec"><div class="k">Custom code</div><div class="v">No drag-and-drop ceiling. If you can describe it, we can build it.</div></div>
         <div class="spec"><div class="k">Plugs in</div><div class="v">Your booking, payments, books, and texts, wired together to run on their own</div></div>
         <div class="spec"><div class="k">Local</div><div class="v">Phoenix based. Same time zone, real person, picks up the phone.</div></div>
+        <div class="spec"><div class="k">Who you get</div><div class="v">Aiden Cornish, founder. The person you talk to is the person who builds it.</div></div>
         <div class="spec"><div class="k">Ongoing</div><div class="v">A monthly partner, not a one-and-done invoice. We grow it with you.</div></div>
       </div>
     </div>
@@ -494,11 +573,16 @@
       </div>
       <div class="form-status" id="formStatus" aria-live="polite"></div>
     </form>
+    <p class="reveal d2" style="color:var(--muted);font-size:14px;margin-top:26px">
+      Rather talk? Call or text <a href="tel:+14807190052" style="color:var(--ink);font-weight:600">(480) 719-0052</a>
+      · Prefer email? <a href="mailto:cornishclaudebot@gmail.com" style="color:var(--ink)">cornishclaudebot@gmail.com</a><br />
+      Either way you get Aiden Cornish, the founder, not a ticket queue.
+    </p>
   </section>
 
   <footer>
     <div class="wrap foot-row">
-      <div>APEX · AI Consulting · Automation · Web Design · Phoenix</div>
+      <div>APEX · AI Consulting · Automation · Web Design · Phoenix · <a href="tel:+14807190052">(480) 719-0052</a></div>
       <div><a href="ai-consulting-phoenix.html">AI consulting &amp; services in Phoenix →</a></div>
     </div>
   </footer>
@@ -569,6 +653,42 @@
       });
     }
 
+    /* ============================================================
+       BOOKING — set CALENDLY_URL once the Calendly account exists
+       (e.g. 'https://calendly.com/apexaz/15min'). Every .book-call
+       button and the contact CTA then open real scheduling.
+       ============================================================ */
+    const CALENDLY_URL = 'https://calendly.com/apexaz';   // live 2026-07-07: 15-Minute Intro Call with Aiden
+    if (CALENDLY_URL){
+      document.querySelectorAll('a.book-15').forEach(a => { a.href = CALENDLY_URL; a.target = '_blank'; a.rel = 'noopener'; });
+    }
+
+    /* instant estimate: mirrors the audit engine's tier recommendation logic */
+    const EST_TIERS = {
+      onboarding: { name:'Onboarding', price:'$3,000', mo:'one-time build, then $2,000/mo if you want us running it. Most owners in your spot start here.' },
+      growth:     { name:'Growth',     price:'$6,000', mo:'one-time build, then $2,500/mo if you want us running it. Stops the leads you already earn from slipping away.' },
+      autopilot:  { name:'Autopilot',  price:'$10,000', mo:'one-time build, then $3,000/mo if you want us running it. The back office runs itself.' }
+    };
+    const estInputs = document.querySelectorAll('#estimate input[type="radio"]');
+    if (estInputs.length){
+      const val = n => (document.querySelector(`input[name="${n}"]:checked`)||{}).value;
+      const show = () => {
+        const site = val('est-site'), leads = val('est-leads'), ai = val('est-ai');
+        if (!site || !leads || !ai) return;
+        let tier = 'onboarding';
+        if (ai === 'yes') tier = 'autopilot';
+        else if (leads === 'lost' || leads === 'manual' || ai === 'some') tier = 'growth';
+        const t = EST_TIERS[tier];
+        document.getElementById('estTier').textContent = 'Your fit: ' + t.name;
+        document.getElementById('estPrice').textContent = t.price;
+        document.getElementById('estMo').textContent = t.mo;
+        document.getElementById('estCta').href = 'audit.html?tier=' + tier;
+        const panel = document.getElementById('estResult');
+        if (!panel.classList.contains('show')){ panel.classList.add('show'); }
+      };
+      estInputs.forEach(i => i.addEventListener('change', show));
+    }
+
     /* custom cursor + magnetic */
     if (!isTouch){
       const cur = document.getElementById('cursor'), dot = document.getElementById('cursorDot');
@@ -610,7 +730,10 @@
     addEventListener('scroll', updateScroll, { passive:true }); updateScroll();
 
     /* ===================== THE AI BRAIN ===================== */
-    import('three').then(async (THREE) => {
+    // Upfront gate: low-memory devices and data-saver users never pay for the 3D at all.
+    const skip3d = (navigator.deviceMemory && navigator.deviceMemory < 4) || navigator.connection?.saveData;
+    if (skip3d) document.body.classList.add('no-webgl');
+    !skip3d && import('three').then(async (THREE) => {
       const { EffectComposer } = await import('three/addons/postprocessing/EffectComposer.js');
       const { RenderPass }     = await import('three/addons/postprocessing/RenderPass.js');
       const { UnrealBloomPass }= await import('three/addons/postprocessing/UnrealBloomPass.js');
@@ -845,6 +968,29 @@
       // ...and a low-rate fallback keeps it alive in background/preview contexts where rAF is paused
       setInterval(() => { if (document.hidden) frame(); }, 200);
       document.body.dataset.webgl = 'on';
+      if (!isTouch && !reduceMotion) document.body.classList.add('webgl-cursor');
+
+      /* performance probe (persona audit: old iPhones/desktops jank hard on the
+         brain + bloom). Measure real frame rate for ~2.5s after boot; if the
+         machine can't hold ~24fps, tear the whole scene down and fall back to
+         the static glow with the native cursor. */
+      (function fpsProbe(){
+        let frames = 0;
+        const t0 = performance.now();
+        function count(){
+          frames++;
+          const dt = performance.now() - t0;
+          if (dt < 2500) return requestAnimationFrame(count);
+          if (document.hidden) return;                    // backgrounded tabs measure garbage; skip
+          const fps = frames / (dt / 1000);
+          if (fps < 24){
+            try { composer.dispose?.(); renderer.dispose(); geo.dispose(); mat.dispose(); } catch(e){}
+            document.body.classList.add('no-webgl');
+            document.body.classList.remove('webgl-cursor');
+          }
+        }
+        requestAnimationFrame(count);
+      })();
     }).catch(err => { console.error('Brain boot failed:', err); document.body.classList.add('no-webgl'); });
   </script>
 </body>
