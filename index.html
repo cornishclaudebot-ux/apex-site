@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="AI consulting, automation, and custom websites for local Phoenix businesses. AI receptionists, chatbots, missed-call text-back, and CRM automation." />
 <link rel="icon" href="assets/apex-mark.svg" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"Apex","founder":{"@type":"Person","name":"Aiden Cornish"},"telephone":"+1-480-719-0052","email":"cornishclaudebot@gmail.com","description":"AI consulting, automation, and web design studio for local businesses. AI receptionists, chatbots, missed-call text-back, CRM and workflow automation, and custom websites.","url":"https://cornishclaudebot-ux.github.io/apex-site/","areaServed":["Phoenix","Glendale","Peoria","Mesa","Scottsdale","Tempe","Surprise","Goodyear","Avondale","Arizona West Valley"],"address":{"@type":"PostalAddress","addressLocality":"Phoenix","addressRegion":"AZ","addressCountry":"US"},"serviceType":["AI consulting","AI automation","AI receptionist","AI chatbot","Missed-call text-back","CRM automation","Web design","Local SEO"],"priceRange":"$3,000 - $15,000","offers":[{"@type":"Offer","name":"Onboarding","price":"3000","priceCurrency":"USD"},{"@type":"Offer","name":"Growth","price":"6000","priceCurrency":"USD"},{"@type":"Offer","name":"Autopilot","price":"10000","priceCurrency":"USD"},{"@type":"Offer","name":"Consultation","price":"15000","priceCurrency":"USD"}]}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Apex","founder":{"@type":"Person","name":"Aiden Cornish"},"telephone":"+1-480-719-0052","email":"cornishclaudebot@gmail.com","description":"AI consulting, automation, and web design studio for local businesses. AI receptionists, chatbots, missed-call text-back, CRM and workflow automation, and custom websites.","url":"https://apexaz.ai/","areaServed":["Phoenix","Glendale","Peoria","Mesa","Scottsdale","Tempe","Surprise","Goodyear","Avondale","Arizona West Valley"],"address":{"@type":"PostalAddress","addressLocality":"Phoenix","addressRegion":"AZ","addressCountry":"US"},"serviceType":["AI consulting","AI automation","AI receptionist","AI chatbot","Missed-call text-back","CRM automation","Web design","Local SEO"],"priceRange":"$3,000 - $10,000","offers":[{"@type":"Offer","name":"Onboarding","price":"3000","priceCurrency":"USD"},{"@type":"Offer","name":"Growth","price":"6000","priceCurrency":"USD"},{"@type":"Offer","name":"Autopilot","price":"10000","priceCurrency":"USD"}]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -88,6 +88,8 @@
   .nav-cta{padding:9px 18px;border-radius:100px;background:rgba(255,255,255,.06);border:1px solid var(--line);
     color:var(--ink)!important;font-weight:600}
   .nav-cta:hover{border-color:rgba(255,255,255,.4)}
+  .nav-call{padding:9px 15px;border-radius:100px;border:1px solid var(--line);color:var(--ink);font-weight:600;white-space:nowrap;letter-spacing:.01em}
+  .nav-call:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.05)}
   @media(max-width:760px){.navlinks a:not(.nav-cta):not(.keep-mobile){display:none}
     .navlinks{gap:16px}}
 
@@ -116,6 +118,13 @@
   .btn:hover{border-color:rgba(255,255,255,.4)}
   .btn.primary{background:var(--grad);border:none;color:#06070b;font-weight:700}
   .btn.primary:hover{filter:brightness(1.08)}
+  .call-cta{white-space:nowrap}
+  @media (pointer:coarse), (max-width:640px){
+    .cta-row{flex-direction:column;align-items:stretch}
+    .cta-row .btn{justify-content:center}
+    .cta-row .call-cta{order:-1;background:var(--grad);border:none;color:#06070b;font-weight:700}
+    .cta-row .btn.primary{background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--ink)}
+  }
   .click-hint{margin-top:34px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
     text-shadow:var(--shadow);opacity:0;animation:fadeUp 1s 1.2s forwards;display:inline-flex;align-items:center;gap:10px}
   .click-hint .pip{width:7px;height:7px;border-radius:50%;background:var(--grad);animation:pulse 1.8s ease-in-out infinite}
@@ -305,6 +314,7 @@
       <a href="#packages" class="keep-mobile">Pricing</a>
       <a href="#why">Why Apex</a>
       <a href="#contact">Book a call</a>
+      <a href="tel:+14807190052" class="nav-call keep-mobile">📞 (480) 719-0052</a>
       <a href="audit.html" class="nav-cta">Free AI audit</a>
     </div>
   </nav>
@@ -316,6 +326,7 @@
     <div class="cta-row">
       <a href="audit.html" class="btn primary magnetic" data-cursor><span class="mag-inner">Get your free AI audit →</span></a>
       <a href="#contact" class="btn magnetic book-15" data-cursor><span class="mag-inner">Book a 15-min call</span></a>
+      <a href="tel:+14807190052" class="btn call-cta magnetic" data-cursor><span class="mag-inner">📞 Call (480) 719-0052</span></a>
     </div>
     <div class="click-hint"><span class="pip"></span> Click anywhere to light up the brain</div>
   </header>

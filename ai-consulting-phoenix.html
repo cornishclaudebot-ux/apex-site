@@ -36,6 +36,8 @@
   .brand{font-family:'Space Grotesk';font-weight:700;letter-spacing:.2em;font-size:16px;display:flex;align-items:center;gap:10px;text-decoration:none}
   .brand .spark{width:9px;height:9px;border-radius:50%;background:var(--grad);box-shadow:0 0 14px var(--violet)}
   .nav-cta{padding:9px 18px;border-radius:100px;background:var(--grad);color:#06070b;font-weight:700;font-size:13.5px;text-decoration:none}
+  .nav-call{padding:9px 15px;border-radius:100px;border:1px solid var(--line,rgba(255,255,255,.14));color:var(--ink);font-weight:600;font-size:13.5px;text-decoration:none;white-space:nowrap;margin-left:auto;margin-right:12px}
+  .nav-call:hover{border-color:rgba(255,255,255,.4)}
 
   header.hero{padding:70px 0 50px}
   .eyebrow{font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px}
@@ -76,6 +78,7 @@
 <body>
   <nav>
     <a href="index.html" class="brand"><span class="spark"></span>APEX</a>
+    <a href="tel:+14807190052" class="nav-call">📞 (480) 719-0052</a>
     <a href="audit.html" class="nav-cta">Get your free AI audit</a>
   </nav>
 
@@ -176,7 +179,7 @@
 
     <div class="cta">
       <h2>Ready to put AI to <span class="grad">work for you?</span></h2>
-      <a href="audit.html" class="btn primary">Get your free AI audit →</a> <a href="index.html#contact" class="btn">Book a 15-min call</a>
+      <a href="audit.html" class="btn primary">Get your free AI audit →</a> <a href="https://calendly.com/apexaz" target="_blank" rel="noopener" class="btn">Book a 15-min call</a>
       <a href="index.html#work" class="btn ghost">See our work</a>
     </div>
   </div>
