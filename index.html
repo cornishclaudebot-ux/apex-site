@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>APEX // AI Consulting, Automation & Web Design in Phoenix</title>
 <meta name="description" content="Apex is a Phoenix AI consulting, automation, and web design studio. AI receptionists, missed-call text-back, chatbots, CRM automation, and custom websites that get local businesses found and booked." />
-<meta name="theme-color" content="#0b0c10" />
+<meta name="theme-color" content="#060709" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Apex // AI Consulting, Automation & Web Design in Phoenix" />
 <meta property="og:description" content="AI consulting, automation, and custom websites for local Phoenix businesses. AI receptionists, chatbots, missed-call text-back, CRM automation, and sites that convert." />
@@ -32,7 +32,7 @@
      no card hover lift · drifting particle canvas · typewriter w/ sizer
      Inverted here onto the original Apex dark palette. */
   :root{
-    --bg:#0b0c10;
+    --bg:#060709;
     --ink:#e9ebf1;              /* inverse of #121317 */
     --muted:#9ba0ab;            /* inverse of #45474D */
     --faint:#6e727d;
@@ -41,7 +41,7 @@
     --line:rgba(233,235,241,.08);
     --cyan:#36e0ff; --violet:#8a5cff; --mag:#ff3d8b;
     --grad:linear-gradient(90deg,#36e0ff,#8a5cff 45%,#ff3d8b);
-    --panel-bg:#050609;         /* the brain panel sits a step deeper */
+    --panel-bg:#030408;         /* the brain panel sits a step deeper */
     --r-card:36px;              /* antigravity card radius */
     --r-chip:8px;               /* antigravity chip radius */
     --fast:.15s ease-out;       /* the one transition they use everywhere */
@@ -64,7 +64,7 @@
 
   /* ---------- nav ---------- */
   nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;gap:28px;
-    padding:14px 24px;background:rgba(11,12,16,.85);backdrop-filter:blur(14px);
+    padding:14px 24px;background:rgba(6,7,9,.85);backdrop-filter:blur(14px);
     border-bottom:1px solid transparent;transition:border-color var(--fast)}
   nav.scrolled{border-bottom-color:var(--line)}
   .brand{display:flex;align-items:center;font-weight:450;font-size:19px;letter-spacing:-.01em;
@@ -1253,7 +1253,7 @@
           blending:THREE.AdditiveBlending, depthWrite:false });
         bgScene.add(new THREE.LineSegments(lineGeo, lineMat));
         /* firing pulses travelling the pathways, chaining onward */
-        const P_N = 12;
+        const P_N = 22;
         const pulsePos = new Float32Array(P_N*3).fill(9999), pulsePhase = new Float32Array(P_N),
               pulseSize = new Float32Array(P_N).fill(2.6), pulseCol = new Float32Array(P_N*3),
               pulseFlare = new Float32Array(P_N).fill(.9);
@@ -1264,25 +1264,45 @@
         pulseGeo.setAttribute('aColor', new THREE.BufferAttribute(pulseCol, 3));
         pulseGeo.setAttribute('aFlare', new THREE.BufferAttribute(pulseFlare, 1));
         bgScene.add(new THREE.Points(pulseGeo, ptsMat.clone()));
-        const pulses = Array.from({length:P_N}, () => ({ e:-1, t:0, sp:0, dir:1, hops:0 }));
-        function firePulse(edgeIdx, hops){
+        const pulses = Array.from({length:P_N}, () => ({ e:-1, t:0, sp:0, dir:1, hops:0, mh:2 }));
+        function firePulse(edgeIdx, hops, fromNode, maxHops){
           const slot = pulses.find(p => p.e < 0);
           if (!slot || !bgEdges.length) return;
           slot.e = edgeIdx >= 0 ? edgeIdx : (Math.random()*bgEdges.length)|0;
           slot.t = 0; slot.sp = .009 + Math.random()*.012;
-          slot.dir = Math.random() < .5 ? 1 : -1; slot.hops = hops || 0;
+          slot.dir = fromNode === undefined
+            ? (Math.random() < .5 ? 1 : -1)
+            : (bgEdges[slot.e][0] === fromNode ? 1 : -1);
+          slot.hops = hops || 0; slot.mh = maxHops || 2;
           const src = bgEdges[slot.e][slot.dir > 0 ? 0 : 1];
           const k = pulses.indexOf(slot);
           pulseCol[k*3] = bgCol[src*3]; pulseCol[k*3+1] = bgCol[src*3+1]; pulseCol[k*3+2] = bgCol[src*3+2];
           pulseGeo.attributes.aColor.needsUpdate = true;
         }
+        /* click: light up the nearest neuron and send signals down its pathways,
+           staggered a touch so the cascade feels organic (obsidian-graph energy) */
+        const pending = [];
+        addEventListener('pointerdown', e => {
+          const v = new THREE.Vector3();
+          let best = -1, bestD = 1e9;
+          for (let i = 0; i < BG_N; i++){
+            v.set(bgPos[i*3], bgPos[i*3+1], bgPos[i*3+2]).project(bgCam);
+            if (v.z > 1) continue;
+            const sx = (v.x*.5 + .5)*innerWidth, sy = (-v.y*.5 + .5)*innerHeight;
+            const d = (sx - e.clientX)*(sx - e.clientX) + (sy - e.clientY)*(sy - e.clientY);
+            if (d < bestD){ bestD = d; best = i; }
+          }
+          if (best < 0) return;
+          bgFlare[best] = 1.5;
+          ptsGeo.attributes.aFlare.needsUpdate = true;
+          bgAdj[best].forEach((edge, k) => {
+            pending.push({ e: edge, from: best, at: bgT + k*.07 + Math.random()*.12 });
+          });
+        }, { passive:true });
+
         /* scroll = journey through the network */
         let bgSv = 0, lastScroll = scrollY;
         addEventListener('scroll', () => { bgSv += Math.abs(scrollY - lastScroll)*.0025; lastScroll = scrollY; }, { passive:true });
-        let bgPx = 0, bgPy = 0;
-        if (!isTouch) addEventListener('pointermove', e => {
-          bgPx = (e.clientX/innerWidth - .5)*1.6; bgPy = (e.clientY/innerHeight - .5)*1.0;
-        }, { passive:true });
         function bgResize(){
           bgRen.setSize(innerWidth, innerHeight);
           bgCam.aspect = innerWidth/innerHeight; bgCam.updateProjectionMatrix();
@@ -1297,11 +1317,7 @@
           const f = max > 0 ? scrollY/max : 0;
           const targetY = -f*(FIELD - 12);
           bgCamY += (targetY - bgCamY)*.055;
-          bgCam.position.set(
-            Math.sin(bgCamY*.14)*1.7 + bgPx,
-            bgCamY - bgPy*.6,
-            9
-          );
+          bgCam.position.set(Math.sin(bgCamY*.14)*1.7, bgCamY, 9);
           bgCam.rotation.set(
             Math.sin(bgCamY*.06)*.05,
             Math.sin(bgCamY*.08)*.16,
@@ -1309,6 +1325,12 @@
           );
           ptsMat.uniforms.uTime.value = bgT;
           lineMat.opacity = .12 + Math.min(.14, bgSv*.25);
+          for (let i = pending.length-1; i >= 0; i--){
+            if (bgT >= pending[i].at){
+              firePulse(pending[i].e, 0, pending[i].from, 4);
+              pending.splice(i, 1);
+            }
+          }
           /* advance pulses */
           let flareDirty = false;
           for (let k = 0; k < P_N; k++){
@@ -1321,9 +1343,9 @@
               bgFlare[target] = 1; flareDirty = true;
               const prevEdge = p.e; p.e = -1;
               pulsePos[k*3] = 9999; pulsePos[k*3+1] = 9999;
-              if (p.hops < 2 && Math.random() < .5){
+              if (p.hops < p.mh && Math.random() < (p.mh > 2 ? .68 : .5)){
                 const opts = bgAdj[target].filter(e2 => e2 !== prevEdge);
-                if (opts.length) firePulse(opts[(Math.random()*opts.length)|0], p.hops+1);
+                if (opts.length) firePulse(opts[(Math.random()*opts.length)|0], p.hops+1, target, p.mh);
               }
               continue;
             }
