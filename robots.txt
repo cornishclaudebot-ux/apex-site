@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cornishclaudebot-ux.github.io/apex-site/sitemap.xml
+Sitemap: https://apexaz.ai/sitemap.xml
