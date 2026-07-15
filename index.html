@@ -1254,16 +1254,21 @@
         bgScene.add(new THREE.LineSegments(lineGeo, lineMat));
         /* firing pulses travelling the pathways, chaining onward */
         const P_N = 22;
-        const pulsePos = new Float32Array(P_N*3).fill(9999), pulsePhase = new Float32Array(P_N),
-              pulseSize = new Float32Array(P_N).fill(2.6), pulseCol = new Float32Array(P_N*3),
-              pulseFlare = new Float32Array(P_N).fill(.9);
+        const P_G = 3;   /* head + fading tail = the neuron visibly travelling the link */
+        const pulsePos = new Float32Array(P_N*P_G*3).fill(9999), pulsePhase = new Float32Array(P_N*P_G),
+              pulseSize = new Float32Array(P_N*P_G), pulseCol = new Float32Array(P_N*P_G*3),
+              pulseFlare = new Float32Array(P_N*P_G);
+        for (let k = 0; k < P_N; k++){
+          pulseSize[k*P_G] = 3.6; pulseSize[k*P_G+1] = 2.1; pulseSize[k*P_G+2] = 1.3;
+          pulseFlare[k*P_G] = 1.0; pulseFlare[k*P_G+1] = .45; pulseFlare[k*P_G+2] = .18;
+        }
         const pulseGeo = new THREE.BufferGeometry();
         pulseGeo.setAttribute('position', new THREE.BufferAttribute(pulsePos, 3));
         pulseGeo.setAttribute('aPhase', new THREE.BufferAttribute(pulsePhase, 1));
         pulseGeo.setAttribute('aSize', new THREE.BufferAttribute(pulseSize, 1));
         pulseGeo.setAttribute('aColor', new THREE.BufferAttribute(pulseCol, 3));
         pulseGeo.setAttribute('aFlare', new THREE.BufferAttribute(pulseFlare, 1));
-        bgScene.add(new THREE.Points(pulseGeo, ptsMat.clone()));
+        bgScene.add(new THREE.Points(pulseGeo, ptsMat));
         const pulses = Array.from({length:P_N}, () => ({ e:-1, t:0, sp:0, dir:1, hops:0, mh:2 }));
         function firePulse(edgeIdx, hops, fromNode, maxHops){
           const slot = pulses.find(p => p.e < 0);
@@ -1276,7 +1281,11 @@
           slot.hops = hops || 0; slot.mh = maxHops || 2;
           const src = bgEdges[slot.e][slot.dir > 0 ? 0 : 1];
           const k = pulses.indexOf(slot);
-          pulseCol[k*3] = bgCol[src*3]; pulseCol[k*3+1] = bgCol[src*3+1]; pulseCol[k*3+2] = bgCol[src*3+2];
+          for (let g = 0; g < P_G; g++){
+            pulseCol[(k*P_G+g)*3]   = bgCol[src*3];
+            pulseCol[(k*P_G+g)*3+1] = bgCol[src*3+1];
+            pulseCol[(k*P_G+g)*3+2] = bgCol[src*3+2];
+          }
           pulseGeo.attributes.aColor.needsUpdate = true;
         }
         /* click: light up the nearest neuron and send signals down its pathways,
@@ -1342,7 +1351,7 @@
               const target = p.dir > 0 ? b : a;
               bgFlare[target] = 1; flareDirty = true;
               const prevEdge = p.e; p.e = -1;
-              pulsePos[k*3] = 9999; pulsePos[k*3+1] = 9999;
+              for (let g = 0; g < P_G; g++){ pulsePos[(k*P_G+g)*3] = 9999; pulsePos[(k*P_G+g)*3+1] = 9999; }
               if (p.hops < p.mh && Math.random() < (p.mh > 2 ? .68 : .5)){
                 const opts = bgAdj[target].filter(e2 => e2 !== prevEdge);
                 if (opts.length) firePulse(opts[(Math.random()*opts.length)|0], p.hops+1, target, p.mh);
@@ -1350,9 +1359,13 @@
               continue;
             }
             const [a, b] = bgEdges[p.e];
-            const tt = p.dir > 0 ? p.t : 1 - p.t;
-            for (let m = 0; m < 3; m++)
-              pulsePos[k*3+m] = bgPos[a*3+m] + (bgPos[b*3+m] - bgPos[a*3+m])*tt;
+            for (let g = 0; g < P_G; g++){
+              let tg = p.t - g*.07;
+              if (tg < 0) tg = 0;
+              const tt = p.dir > 0 ? tg : 1 - tg;
+              for (let m = 0; m < 3; m++)
+                pulsePos[(k*P_G+g)*3+m] = bgPos[a*3+m] + (bgPos[b*3+m] - bgPos[a*3+m])*tt;
+            }
           }
           pulseGeo.attributes.position.needsUpdate = true;
           for (let i = 0; i < BG_N; i++){ if (bgFlare[i] > .01){ bgFlare[i] *= .93; flareDirty = true; } }
@@ -1360,7 +1373,7 @@
           if (bgT > nextPulse){
             firePulse(-1, 0);
             if (bgSv > .25) firePulse(-1, 0);
-            nextPulse = bgT + .45 + Math.random()*1.0;
+            nextPulse = bgT + .32 + Math.random()*.85;
           }
           bgRen.render(bgScene, bgCam);
         }
