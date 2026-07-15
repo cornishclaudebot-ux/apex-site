@@ -6,79 +6,83 @@
 <title>AI Consulting, Automation & Web Design in Phoenix, AZ | Apex</title>
 <meta name="description" content="Apex helps Phoenix and West Valley businesses with AI consulting, automation, AI receptionists, missed-call text-back, chatbots, CRM automation, local SEO, and custom websites. Hands-on, custom-built, real results." />
 <link rel="canonical" href="https://cornishclaudebot-ux.github.io/apex-site/ai-consulting-phoenix.html" />
-<meta name="theme-color" content="#06070b" />
+<meta name="theme-color" content="#0b0c10" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="AI Consulting, Automation & Web Design in Phoenix, AZ | Apex" />
 <meta property="og:description" content="AI consulting, automation, AI receptionists, chatbots, missed-call text-back, CRM automation, local SEO, and custom websites for local Phoenix businesses." />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2336e0ff'/%3E%3Cstop offset='.5' stop-color='%238a5cff'/%3E%3Cstop offset='1' stop-color='%23ff3d8b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%23070810'/%3E%3Ccircle cx='16' cy='16' r='7' fill='url(%23g)'/%3E%3C/svg%3E" />
+<link rel="icon" href="assets/apex-mark.svg?v=6" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@8..144,400..500&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#06070b;--ink:#f2f4fa;--muted:#aab1c6;--line:rgba(255,255,255,.12);
-    --glass:rgba(16,19,30,.55);--cyan:#36e0ff;--violet:#8a5cff;--mag:#ff3d8b;
-    --grad:linear-gradient(90deg,var(--cyan),var(--violet) 45%,var(--mag));--maxw:1000px;
+    --bg:#0b0c10;--ink:#e9ebf1;--muted:#9ba0ab;--faint:#6e727d;--line:rgba(233,235,241,.08);
+    --surface:#16171d;--surface-hi:#22242c;
+    --cyan:#36e0ff;--violet:#8a5cff;--mag:#ff3d8b;
+    --grad:linear-gradient(90deg,#36e0ff,#8a5cff 45%,#ff3d8b);--maxw:1000px;
+    --font:'Google Sans Flex','Google Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.7;
-    -webkit-font-smoothing:antialiased;overflow-x:hidden}
-  body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-    background:
-      radial-gradient(45% 35% at 80% 0%, rgba(138,92,255,.18), transparent 70%),
-      radial-gradient(40% 30% at 10% 12%, rgba(54,224,255,.14), transparent 70%)}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:400;line-height:1.7;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
   a{color:inherit}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
-  ::selection{background:var(--violet);color:#fff}
+  ::selection{background:#3d2f7a;color:#fff}
 
-  nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
-    padding:16px 26px;max-width:var(--maxw);margin:0 auto}
-  .brand{font-family:'Space Grotesk';font-weight:700;letter-spacing:.2em;font-size:16px;display:flex;align-items:center;gap:10px;text-decoration:none}
-  .brand .spark{width:9px;height:9px;border-radius:50%;background:var(--grad);box-shadow:0 0 14px var(--violet)}
-  .nav-cta{padding:9px 18px;border-radius:100px;background:var(--grad);color:#06070b;font-weight:700;font-size:13.5px;text-decoration:none}
-  .nav-call{padding:9px 15px;border-radius:100px;border:1px solid var(--line,rgba(255,255,255,.14));color:var(--ink);font-weight:600;font-size:13.5px;text-decoration:none;white-space:nowrap;margin-left:auto;margin-right:12px}
-  .nav-call:hover{border-color:rgba(255,255,255,.4)}
+  nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:14px 26px;background:rgba(11,12,16,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;font-weight:500;font-size:19px;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+  .nav-cta{padding:11px 22px;border-radius:100px;background:#f2f3f7;color:#121317;font-weight:500;font-size:14px;text-decoration:none;white-space:nowrap;transition:background .25s}
+  .nav-cta:hover{background:#d7dae2}
+  .nav-call{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:100px;background:var(--surface);color:var(--ink);font-weight:500;font-size:14px;text-decoration:none;white-space:nowrap;margin-left:auto;margin-right:12px;transition:background .2s}
+  .nav-call:hover{background:var(--surface-hi)}
+  @media(max-width:560px){.nav-call{display:none}}
 
   header.hero{padding:70px 0 50px}
-  .eyebrow{font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px}
-  h1{font-family:'Space Grotesk';font-weight:700;font-size:clamp(32px,5.4vw,56px);line-height:1.05;letter-spacing:-.02em;max-width:760px}
+  .eyebrow{display:inline-flex;padding:7px 16px;border-radius:100px;background:rgba(233,235,241,.06);color:var(--cyan);font-size:13px;font-weight:500;margin-bottom:20px}
+  h1{font-weight:500;font-size:clamp(32px,5.4vw,56px);line-height:1.06;letter-spacing:-.02em;max-width:760px}
   h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .lede{color:var(--muted);font-size:clamp(16px,2.1vw,19px);max-width:680px;margin-top:22px}
-  .crumb{font-size:13px;color:var(--muted);margin-bottom:26px}
-  .crumb a{color:var(--cyan);text-decoration:none}
+  .crumb{font-size:13px;color:var(--faint);margin-bottom:26px}
+  .crumb a{color:var(--violet);text-decoration:none}
 
   section.blk{padding:44px 0;border-top:1px solid var(--line)}
-  h2{font-family:'Space Grotesk';font-weight:600;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.01em;margin-bottom:8px}
+  h2{font-weight:500;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.015em;margin-bottom:8px}
   h2 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .sub{color:var(--muted);max-width:680px;margin-bottom:26px}
-  h3{font-family:'Space Grotesk';font-weight:600;font-size:19px;margin:0 0 6px}
-  p{color:#cdd2e2}
-  .svc{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+  h3{font-weight:500;font-size:18px;margin:0 0 6px;letter-spacing:-.005em}
+  p{color:var(--muted)}
+  .svc{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
   @media(max-width:720px){.svc{grid-template-columns:1fr}}
-  .svc .item{background:var(--glass);border:1px solid var(--line);border-radius:16px;padding:22px 24px;backdrop-filter:blur(12px)}
+  .svc .item{background:var(--surface);border-radius:22px;padding:24px 26px}
+  .svc .item h3{color:var(--ink)}
   .svc .item p{color:var(--muted);font-size:14.5px;margin-top:2px}
   .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
-  .chip{border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:100px;padding:9px 16px;font-size:14px;color:#cdd2e2}
+  .chip{background:var(--surface);border-radius:100px;padding:10px 18px;font-size:14px;font-weight:500;color:var(--ink)}
   .faq details{border-bottom:1px solid var(--line);padding:18px 0}
-  .faq summary{font-family:'Space Grotesk';font-weight:600;font-size:17px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  .faq summary{font-weight:500;font-size:17px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;color:var(--ink)}
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";color:var(--cyan);font-size:22px;line-height:1}
+  .faq summary::after{content:"+";color:var(--violet);font-size:22px;line-height:1}
   .faq details[open] summary::after{content:"–"}
   .faq p{color:var(--muted);margin-top:12px;font-size:15.5px}
   .cta{text-align:center;padding:60px 0 30px;border-top:1px solid var(--line);margin-top:10px}
   .cta h2{margin-bottom:18px}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:15px 28px;border-radius:100px;font-weight:600;font-size:14.5px;
-    text-decoration:none;margin:6px}
-  .btn.primary{background:var(--grad);color:#06070b;font-weight:700}
-  .btn.ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:100px;font-weight:500;font-size:14.5px;
+    text-decoration:none;margin:6px;transition:background .25s;background:var(--surface-hi);color:var(--ink)}
+  .btn:hover{background:#2c2e38}
+  .btn.primary{background:#f2f3f7;color:#121317}
+  .btn.primary:hover{background:#d7dae2}
+  .btn.ghost{background:var(--surface);color:var(--ink)}
   footer{border-top:1px solid var(--line);padding:30px 0;margin-top:30px;color:var(--muted);font-size:13.5px}
-  footer a{color:var(--cyan);text-decoration:none}
+  footer a{color:var(--ink);text-decoration:none;font-weight:500}
 </style>
 </head>
 <body>
   <nav>
-    <a href="index.html" class="brand"><span class="spark"></span>APEX</a>
-    <a href="tel:+14807190052" class="nav-call">📞 (480) 719-0052</a>
+    <a href="index.html" class="brand">Apex</a>
+    <a href="tel:+14807190052" class="nav-call">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      (480) 719-0052</a>
     <a href="audit.html" class="nav-cta">Get your free AI audit</a>
   </nav>
 
@@ -202,6 +206,153 @@
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"ProfessionalService","name":"Apex","description":"AI consulting, automation, and web design studio for local businesses in Phoenix, Arizona. AI receptionists, missed-call text-back, chatbots, CRM and workflow automation, local SEO, and custom websites.","url":"https://cornishclaudebot-ux.github.io/apex-site/ai-consulting-phoenix.html","areaServed":["Phoenix","Glendale","Peoria","Mesa","Scottsdale","Tempe","Chandler","Gilbert","Surprise","Goodyear","Avondale","Buckeye","Maricopa County","Arizona West Valley"],"address":{"@type":"PostalAddress","addressLocality":"Phoenix","addressRegion":"AZ","addressCountry":"US"},"serviceType":["AI consulting","AI automation","AI receptionist","AI voice agent","AI chatbot","Missed-call text-back","CRM automation","Email and SMS marketing automation","Reputation management","Workflow automation","Web design","Local SEO"],"priceRange":"$$"}
+  </script>
+  <script>
+    /* synapse field: a neural network living behind the whole page.
+       Nodes breathe organically, pathways bridge nearby neurons (neuroplasticity),
+       pulses fire along them and chain onward, and the whole web flows upward and
+       twists gently as you scroll. Same aesthetic family as the 3D brain.
+       Kept dim on purpose: it is a background, not a show. */
+    (function synapses(){
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const touch = matchMedia('(pointer: coarse)').matches;
+      const cv = document.createElement('canvas');
+      cv.setAttribute('aria-hidden','true');
+      cv.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:-1';
+      document.body.appendChild(cv);
+      const ctx = cv.getContext('2d');
+      const dpr = Math.min(devicePixelRatio || 1, 1.5);
+      const COL = [[54,224,255],[73,182,255],[138,92,255],[168,87,240],[199,79,198],[255,61,139]];
+      let W, H, LINK, nodes = [], edges = [], pulses = [];
+      function seed(){
+        W = cv.width = innerWidth*dpr; H = cv.height = innerHeight*dpr;
+        cv.style.width = innerWidth+'px'; cv.style.height = innerHeight+'px';
+        LINK = 165*dpr;
+        const n = touch ? 34 : Math.min(90, Math.round(innerWidth*innerHeight/18000));
+        nodes = Array.from({length:n}, () => ({
+          bx: Math.random()*W, by: Math.random()*H*1.4,
+          depth: .25 + Math.random()*.75,
+          ph: Math.random()*Math.PI*2,
+          breath: .5 + Math.random()*.5,
+          c: COL[(Math.random()*COL.length)|0],
+          x: 0, y: 0, flare: 0
+        }));
+        pulses.length = 0;
+      }
+      seed(); addEventListener('resize', seed);
+      let scroll = scrollY, sv = 0;
+      addEventListener('scroll', () => {
+        const s = scrollY; sv += Math.abs(s - scroll)*.003; scroll = s;
+      }, { passive:true });
+      let mx = -1e4, my = -1e4;
+      if (!touch) addEventListener('pointermove', e => { mx = e.clientX*dpr; my = e.clientY*dpr; }, { passive:true });
+      function project(t){
+        const fieldH = H*1.4;
+        for (const nd of nodes){
+          let y = nd.by - (scroll*dpr)*nd.depth*.35;
+          y = ((y % fieldH) + fieldH) % fieldH - H*.2;
+          const twist = Math.sin(scroll*.0012 + nd.ph)*(26*dpr)*nd.depth;
+          nd.x = nd.bx + twist + Math.sin(t*.24 + nd.ph)*(8*dpr);
+          nd.y = y + Math.cos(t*.2 + nd.ph*1.7)*(8*dpr);
+        }
+      }
+      function computeEdges(){
+        edges.length = 0;
+        for (let i = 0; i < nodes.length; i++){
+          let links = 0;
+          for (let j = i+1; j < nodes.length && links < 3; j++){
+            const a = nodes[i], b = nodes[j];
+            const dx = a.x-b.x, dy = a.y-b.y, d2 = dx*dx + dy*dy;
+            if (d2 < LINK*LINK){ edges.push({ a, b, d: Math.sqrt(d2) }); links++; }
+          }
+        }
+      }
+      function fire(){
+        if (!edges.length || pulses.length > 8) return;
+        const e = edges[(Math.random()*edges.length)|0];
+        pulses.push({ e, t: 0, sp: .008 + Math.random()*.012, dir: Math.random() < .5 ? 1 : -1, hops: 0 });
+      }
+      let frame = 0, t = 0, nextFire = 1.2;
+      function draw(){
+        t += .016;
+        ctx.clearRect(0, 0, W, H);
+        project(t);
+        if (frame % 4 === 0) computeEdges();
+        frame++;
+        sv *= .94;
+        const energy = Math.min(1, sv);
+        /* pathways */
+        for (const e of edges){
+          const k = 1 - e.d/LINK;
+          let o = .045 + k*.075 + energy*.06;
+          if (!touch){
+            const md = Math.hypot((e.a.x+e.b.x)/2 - mx, (e.a.y+e.b.y)/2 - my);
+            if (md < 260*dpr) o += (1 - md/(260*dpr))*.1;
+          }
+          ctx.globalAlpha = Math.min(.28, o);
+          ctx.strokeStyle = 'rgb(138,92,255)';
+          ctx.lineWidth = dpr*k + .4;
+          ctx.beginPath(); ctx.moveTo(e.a.x, e.a.y); ctx.lineTo(e.b.x, e.b.y); ctx.stroke();
+        }
+        /* firing pulses, chaining neuron to neuron */
+        for (let i = pulses.length-1; i >= 0; i--){
+          const p = pulses[i];
+          p.t += p.sp*(1 + energy*1.5);
+          if (p.t >= 1){
+            const target = p.dir > 0 ? p.e.b : p.e.a;
+            target.flare = 1;
+            pulses.splice(i, 1);
+            if (p.hops < 2 && Math.random() < .45){
+              const next = edges.filter(e2 => e2 !== p.e && (e2.a === target || e2.b === target));
+              if (next.length){
+                const e2 = next[(Math.random()*next.length)|0];
+                pulses.push({ e: e2, t: 0, sp: p.sp, dir: e2.a === target ? 1 : -1, hops: p.hops+1 });
+              }
+            }
+            continue;
+          }
+          const tt = p.dir > 0 ? p.t : 1 - p.t;
+          const x = p.e.a.x + (p.e.b.x - p.e.a.x)*tt;
+          const y = p.e.a.y + (p.e.b.y - p.e.a.y)*tt;
+          const c = (p.dir > 0 ? p.e.a : p.e.b).c;
+          ctx.fillStyle = `rgb(${c[0]},${c[1]},${c[2]})`;
+          ctx.globalAlpha = .5;
+          ctx.beginPath(); ctx.arc(x, y, 1.7*dpr, 0, 7); ctx.fill();
+          ctx.globalAlpha = .12;
+          ctx.beginPath(); ctx.arc(x, y, 5*dpr, 0, 7); ctx.fill();
+        }
+        /* neurons: organic breathing + flare on pulse arrival */
+        for (const nd of nodes){
+          const breath = .6 + .4*Math.sin(t*nd.breath + nd.ph);
+          nd.flare *= .93;
+          let glow = .09 + .09*breath + nd.flare*.5 + energy*.08;
+          if (!touch){
+            const d = Math.hypot(nd.x - mx, nd.y - my);
+            if (d < 240*dpr) glow += (1 - d/(240*dpr))*.2;
+          }
+          const r = (1.1 + nd.depth*1.3)*dpr*(1 + nd.flare*.8);
+          const [cr, cg, cb] = nd.c;
+          ctx.fillStyle = `rgb(${cr},${cg},${cb})`;
+          ctx.globalAlpha = Math.min(.26, glow*.5);
+          ctx.beginPath(); ctx.arc(nd.x, nd.y, r*3.2, 0, 7); ctx.fill();
+          ctx.globalAlpha = Math.min(.7, .22 + glow);
+          ctx.beginPath(); ctx.arc(nd.x, nd.y, r, 0, 7); ctx.fill();
+        }
+        if (t > nextFire){
+          fire(); if (energy > .3) fire();
+          nextFire = t + .5 + Math.random()*1.1;
+        }
+      }
+      if (reduce){ project(0); computeEdges(); draw(); return; }
+      let lastFrame = 0;
+      (function loop(){
+        requestAnimationFrame(loop);
+        lastFrame = performance.now();
+        if (!document.hidden) draw();
+      })();
+      /* rAF starves in occluded/throttled windows; low-rate fallback keeps it alive */
+      setInterval(() => { if (performance.now() - lastFrame > 120) draw(); }, 66);
+    })();
   </script>
 </body>
 </html>

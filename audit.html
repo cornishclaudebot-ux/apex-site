@@ -4,148 +4,154 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Apex · Free AI Audit</title>
-<meta name="theme-color" content="#06070b" />
+<meta name="theme-color" content="#0b0c10" />
 <meta name="description" content="Get a free AI audit of your Google footprint, website, and funnels. Apex's AI analyzes your business and shows exactly what we can automate for you." />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Free AI Audit · Apex" />
 <meta property="og:description" content="Our AI reads your Google footprint, website, and funnels, then shows exactly what we would automate. Free, fast, no pressure. Builds priced up front: $3,000 to $10,000." />
-<meta property="og:image" content="https://cornishclaudebot-ux.github.io/apex-site/assets/og-image.png" />
+<meta property="og:image" content="https://cornishclaudebot-ux.github.io/apex-site/assets/og-image.png?v=6" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cornishclaudebot-ux.github.io/apex-site/assets/og-image.png" />
-<link rel="icon" href="assets/apex-mark.svg" />
+<meta name="twitter:image" content="https://cornishclaudebot-ux.github.io/apex-site/assets/og-image.png?v=6" />
+<link rel="icon" href="assets/apex-mark.svg?v=6" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@8..144,400..500&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#06070b; --ink:#f2f4fa; --muted:#aab1c6; --faint:#6b7488;
+    --bg:#0b0c10; --ink:#e9ebf1; --muted:#9ba0ab; --faint:#6e727d;
+    --surface:#16171d; --surface-hi:#22242c; --line:rgba(233,235,241,.08);
     --cyan:#36e0ff; --violet:#8a5cff; --mag:#ff3d8b;
-    --line:rgba(255,255,255,.10); --glass:rgba(255,255,255,.03);
     --grad:linear-gradient(100deg,#36e0ff,#8a5cff 55%,#ff3d8b);
-    --shadow:0 1px 24px -12px rgba(0,0,0,.8);
+    --radius:28px;
+    --font:'Google Sans Flex','Google Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   body{margin:0;background:var(--bg);color:var(--ink);
-    font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.55;
-    -webkit-font-smoothing:antialiased;overflow-x:hidden}
-  ::selection{background:var(--violet);color:#fff}
+    font-family:var(--font);font-weight:400;line-height:1.55;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+  ::selection{background:#3d2f7a;color:#fff}
   a{color:inherit}
   .wrap{max-width:960px;margin:0 auto;padding:0 24px}
 
-  /* ambient glow */
-  .orb{position:fixed;border-radius:50%;filter:blur(70px);opacity:.5;z-index:0;pointer-events:none}
-  .orb.a{width:520px;height:520px;background:var(--violet);top:-220px;right:-160px}
-  .orb.b{width:440px;height:440px;background:var(--cyan);bottom:-220px;left:-180px;opacity:.35}
-  .orb.c{width:360px;height:360px;background:var(--mag);top:40%;right:-160px;opacity:.28}
-
   /* nav */
-  nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
-    padding:16px 24px;backdrop-filter:blur(12px);background:rgba(6,7,11,.6);border-bottom:1px solid transparent}
-  .brand{font-family:'Space Grotesk';font-weight:700;letter-spacing:.22em;font-size:15px;display:flex;align-items:center;gap:10px}
-  .mark{width:22px;height:22px;border-radius:6px;background:#070810;border:1px solid var(--line);position:relative}
-  .mark::after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--grad)}
-  .nav-cta{font-size:13px;letter-spacing:.02em;text-decoration:none;color:var(--muted)}
-  .nav-cta:hover{color:var(--ink)}
-  .nav-call{font-size:13.5px;font-weight:600;text-decoration:none;color:var(--ink);padding:8px 14px;border:1px solid var(--line);border-radius:100px;white-space:nowrap}
-  .nav-call:hover{border-color:rgba(255,255,255,.4)}
+  nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:14px 24px;backdrop-filter:blur(12px);background:rgba(11,12,16,.85);border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;font-weight:500;font-size:19px;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+  .nav-cta{font-size:14px;text-decoration:none;color:var(--muted);padding:9px 14px;border-radius:100px;white-space:nowrap}
+  .nav-cta:hover{background:var(--surface);color:var(--ink)}
+  .nav-call{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;text-decoration:none;
+    color:var(--ink);padding:10px 16px;background:var(--surface);border-radius:100px;white-space:nowrap}
+  .nav-call:hover{background:var(--surface-hi)}
 
   /* hero */
-  header.hero{position:relative;z-index:1;padding:64px 0 26px}
-  .eyebrow{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px;font-weight:600}
-  h1{font-family:'Space Grotesk';font-weight:700;line-height:.98;letter-spacing:-.02em;
-    font-size:clamp(34px,6vw,60px);margin:0 0 20px}
+  header.hero{position:relative;padding:64px 0 26px}
+  .eyebrow{display:inline-flex;padding:7px 16px;border-radius:100px;background:rgba(233,235,241,.06);
+    color:#a88bff;font-size:13px;font-weight:500;margin-bottom:22px}
+  h1{font-weight:500;line-height:1.06;letter-spacing:-.02em;font-size:clamp(32px,5.6vw,56px);margin:0 0 20px}
   .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{max-width:660px;color:#cfd4e4;font-size:clamp(16px,2.2vw,19px);margin:0 0 8px}
-  .powered{margin-top:18px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
-    display:inline-flex;align-items:center;gap:9px}
-  .powered b{color:var(--muted);font-family:'Space Grotesk';font-weight:600}
-  .dot{width:7px;height:7px;border-radius:50%;background:#3ee08a;box-shadow:0 0 10px #3ee08a}
+  .sub{max-width:660px;color:var(--muted);font-size:clamp(15.5px,2.2vw,18px);margin:0 0 8px}
+  .powered{margin-top:18px;font-size:13px;color:var(--faint);display:inline-flex;align-items:center;gap:9px}
+  .powered b{color:var(--muted);font-weight:500}
+  .dot{width:7px;height:7px;border-radius:50%;background:#34d368}
+  .talk-line{margin-top:16px;font-size:15px}
+  .talk-line a{color:var(--ink);font-weight:500;text-decoration:none}
+  .talk-line a:hover{text-decoration:underline}
 
   /* analyze strip */
-  .analyze{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:34px 0 8px}
-  .acard{background:var(--glass);border:1px solid var(--line);border-radius:16px;padding:20px;backdrop-filter:blur(8px)}
-  .acard .ic{font-size:22px}
-  .acard h3{font-family:'Space Grotesk';font-weight:600;font-size:15.5px;margin:12px 0 6px}
+  .analyze{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:34px 0 8px}
+  .acard{background:var(--surface);border-radius:22px;padding:24px 22px}
+  .acard .ic{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+    background:rgba(233,235,241,.07);color:var(--ink)}
+  .acard h3{font-weight:500;font-size:16px;margin:14px 0 6px}
   .acard p{color:var(--muted);font-size:13.5px;margin:0}
 
   /* form card */
-  .formwrap{position:relative;z-index:1;margin:40px 0 90px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
-    border:1px solid var(--line);border-radius:22px;padding:34px;backdrop-filter:blur(14px);box-shadow:var(--shadow)}
-  .step{border-top:1px solid var(--line);padding:26px 0}
-  .step:first-of-type{border-top:none;padding-top:6px}
+  .formwrap{margin:40px 0 90px;background:var(--surface);border-radius:var(--radius);padding:38px 34px}
+  .step{border-top:1px solid var(--line);padding:28px 0}
+  .step:first-of-type{border-top:none;padding-top:0}
   .step-h{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-  .step-n{font-family:'Space Grotesk';font-weight:700;font-size:12px;letter-spacing:.12em;color:#06070b;
-    background:var(--grad);border-radius:100px;padding:5px 11px}
-  .step-h h2{font-family:'Space Grotesk';font-weight:600;font-size:19px;margin:0}
-  .step-sub{color:var(--muted);font-size:13.5px;margin:0 0 16px}
+  .step-n{font-weight:500;font-size:12.5px;letter-spacing:.06em;color:#121317;
+    background:#f2f3f7;border-radius:100px;padding:5px 12px}
+  .step-h h2{font-weight:500;font-size:20px;margin:0;letter-spacing:-.01em}
+  .step-sub{color:var(--muted);font-size:14px;margin:0 0 18px}
 
-  label{display:block;font-size:12px;letter-spacing:.03em;color:var(--faint);margin:0 0 6px;font-weight:600;text-transform:uppercase}
+  label{display:block;font-size:12.5px;letter-spacing:.03em;color:var(--faint);margin:0 0 6px;font-weight:500;text-transform:uppercase}
   .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
   .full{grid-column:1/-1}
-  input,textarea,select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;
-    color:var(--ink);font:inherit;font-size:15px;padding:13px 15px;transition:border-color .25s,background .25s}
-  input::placeholder,textarea::placeholder{color:#7d8499}
-  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--cyan);background:rgba(54,224,255,.06)}
+  input,textarea,select{width:100%;background:#101116;border:1px solid transparent;border-radius:14px;
+    color:var(--ink);font:inherit;font-size:16px;padding:14px 16px;transition:border-color .2s;
+    box-shadow:inset 0 0 0 1px var(--line)}
+  input::placeholder,textarea::placeholder{color:var(--faint)}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--violet);box-shadow:none}
   select{appearance:none;-webkit-appearance:none;cursor:pointer;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23aab1c6' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239ba0ab' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");
     background-repeat:no-repeat;background-position:right 15px center}
-  select option{background:#0b0d15;color:var(--ink)}
+  select option{background:#101116;color:var(--ink)}
   textarea{resize:vertical;min-height:96px}
-  .hint{font-size:12px;color:var(--faint);margin:7px 2px 0}
+  .hint{font-size:12.5px;color:var(--faint);margin:7px 2px 0}
 
   /* google finder */
   .gfind{display:flex;gap:10px;align-items:stretch}
   .gfind input{flex:1}
-  .gbtn{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);
-    border:1px solid var(--line);border-radius:12px;color:var(--ink);font:inherit;font-size:13.5px;font-weight:600;
-    padding:0 16px;cursor:pointer;transition:border-color .25s,background .25s}
-  .gbtn:hover{border-color:var(--cyan);background:rgba(54,224,255,.08)}
+  .gbtn{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;background:#101116;
+    border:none;box-shadow:inset 0 0 0 1px var(--line);border-radius:14px;color:var(--ink);font:inherit;
+    font-size:14px;font-weight:500;padding:0 18px;cursor:pointer;transition:background .2s;min-height:48px}
+  .gbtn:hover{background:var(--surface-hi)}
 
   /* pain chips */
   .chips{display:flex;flex-wrap:wrap;gap:10px;margin:4px 0 16px}
   .chip{position:relative;cursor:pointer;user-select:none}
   .chip input{position:absolute;opacity:0;pointer-events:none}
-  .chip span{display:inline-block;padding:9px 15px;border-radius:100px;border:1px solid var(--line);
-    background:rgba(255,255,255,.03);font-size:13.5px;color:var(--muted);transition:all .2s}
-  .chip input:checked + span{border-color:var(--violet);background:rgba(138,92,255,.16);color:#fff}
-  .chip input:focus-visible + span{outline:2px solid var(--cyan);outline-offset:2px}
+  .chip span{display:inline-block;padding:11px 18px;border-radius:100px;background:#101116;
+    box-shadow:inset 0 0 0 1px var(--line);font-size:14px;color:var(--muted);transition:all .2s}
+  .chip input:checked + span{background:#f2f3f7;color:#121317;box-shadow:none}
+  .chip input:focus-visible + span{outline:2px solid var(--violet);outline-offset:2px}
 
   /* submit */
-  .actions{margin-top:22px}
-  .go{width:100%;border:none;border-radius:14px;background:var(--grad);color:#06070b;
-    font-family:'Space Grotesk';font-weight:700;font-size:16px;letter-spacing:.01em;padding:16px;cursor:pointer;
-    transition:transform .2s,filter .2s}
-  .go:hover{transform:translateY(-2px);filter:brightness(1.06)}
+  .actions{margin-top:24px}
+  .go{width:100%;border:none;border-radius:100px;background:#f2f3f7;color:#121317;
+    font-family:var(--font);font-weight:500;font-size:16px;letter-spacing:.01em;padding:17px;cursor:pointer;
+    transition:background .25s,transform .15s}
+  .go:hover{background:#d7dae2}
+  .go:active{transform:scale(.99)}
   .go:disabled{opacity:.6;cursor:not-allowed;transform:none}
-  .reassure{text-align:center;color:var(--faint);font-size:12.5px;margin-top:14px}
+  .reassure{text-align:center;color:var(--faint);font-size:13px;margin-top:14px}
   .status{margin-top:16px;text-align:center;font-size:14.5px;min-height:22px}
-  .status.ok{color:#7ef0b0}
-  .status.err{color:#ff8fae}
+  .status.ok{color:#4ade80}
+  .status.err{color:#ff7a9c}
   .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
 
   /* success panel */
-  .done{display:none;position:relative;z-index:1;text-align:center;padding:70px 0 120px}
+  .done{display:none;text-align:center;padding:70px 0 120px}
   .done.show{display:block}
   .done .check{width:74px;height:74px;border-radius:50%;margin:0 auto 22px;display:grid;place-items:center;
-    background:rgba(62,224,138,.14);border:1px solid rgba(62,224,138,.5);font-size:34px}
-  .done h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(26px,4vw,38px);margin:0 0 12px}
+    background:rgba(74,222,128,.12);color:#4ade80}
+  .done h2{font-weight:500;font-size:clamp(26px,4vw,38px);margin:0 0 12px;letter-spacing:-.015em}
   .done p{color:var(--muted);max-width:520px;margin:0 auto 8px;font-size:16px}
+  .done b{color:var(--ink);font-weight:500}
+  .done-cta{display:inline-block;margin-top:14px;padding:15px 32px;border-radius:100px;background:#f2f3f7;
+    color:#121317;font-weight:500;font-size:15px;text-decoration:none;transition:background .25s}
+  .done-cta:hover{background:#d7dae2}
 
   @media(max-width:640px){
     .analyze{grid-template-columns:1fr}
     .frow{grid-template-columns:1fr}
     .gfind{flex-direction:column}
-    .formwrap{padding:24px}
+    .gfind .gbtn{justify-content:center;padding:14px}
+    .formwrap{padding:26px 20px}
+    .nav-cta{display:none}
   }
 </style>
 </head>
 <body>
-  <div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
 
   <nav>
-    <div class="brand"><img src="assets/apex-mark.svg" alt="Apex brain logo" style="width:24px;height:24px" /> APEX</div>
-    <a class="nav-call" href="tel:+14807190052">📞 (480) 719-0052</a>
+    <a class="brand" href="index.html">Apex</a>
+    <a class="nav-call" href="tel:+14807190052">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      (480) 719-0052</a>
     <a class="nav-cta" href="index.html">← Back to Apex</a>
   </nav>
 
@@ -154,15 +160,21 @@
       <div class="eyebrow">Free AI Audit</div>
       <h1>See exactly where AI can<br><span class="grad">run your business for you.</span></h1>
       <p class="sub">Tell us who you are and our AI reads your entire Google footprint, your website, and the funnels you have today. Then we show you what we can automate, and the better system we would build around it. No cost, no pressure, no jargon.</p>
-      <p class="sub" style="font-size:14.5px;color:#aab1c6">If we end up working together, builds run $3,000 to $10,000 one-time and the monthly partnership after is optional. You will never hear a surprise number on a call.</p>
+      <p class="sub" style="font-size:14.5px">If we end up working together, builds run $3,000 to $10,000 one-time and the monthly partnership after is optional. You will never hear a surprise number on a call.</p>
       <span class="powered"><span class="dot"></span> Reviewed by our team · first response within one business day</span>
-      <p style="margin-top:16px;font-size:15px"><a href="tel:+14807190052" style="color:var(--ink);font-weight:600;border-bottom:1px solid var(--line);text-decoration:none">📞 Prefer to talk? Call or text (480) 719-0052</a></p>
+      <p class="talk-line"><a href="tel:+14807190052">Prefer to talk? Call or text (480) 719-0052</a></p>
     </header>
 
     <section class="analyze" aria-label="What we analyze">
-      <div class="acard"><div class="ic">🔎</div><h3>Your Google footprint</h3><p>Your Business Profile, reviews, and how you rank when locals search for you.</p></div>
-      <div class="acard"><div class="ic">🖥️</div><h3>Your website</h3><p>Speed, booking, lead capture, and every place a customer quietly slips away.</p></div>
-      <div class="acard"><div class="ic">⚙️</div><h3>Your funnels</h3><p>How leads reach you and what happens next, so we can automate the busywork.</p></div>
+      <div class="acard">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></div>
+        <h3>Your Google footprint</h3><p>Your Business Profile, reviews, and how you rank when locals search for you.</p></div>
+      <div class="acard">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></div>
+        <h3>Your website</h3><p>Speed, booking, lead capture, and every place a customer quietly slips away.</p></div>
+      <div class="acard">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+        <h3>Your funnels</h3><p>How leads reach you and what happens next, so we can automate the busywork.</p></div>
     </section>
 
     <!-- action/method = no-JS fallback: FormSubmit accepts plain HTML POSTs, so the
@@ -198,10 +210,12 @@
           </div>
         </div>
 
-        <label for="google">Which one is you on Google? <span style="text-transform:none;color:#7d8499">(optional, we can find you from your business name)</span></label>
+        <label for="google">Which one is you on Google? <span style="text-transform:none;color:var(--faint)">(optional, we can find you from your business name)</span></label>
         <div class="gfind">
           <input id="google" name="google" type="url" inputmode="url" placeholder="Paste your Google listing or Maps link (or skip this)" autocomplete="off" />
-          <button type="button" class="gbtn" id="findBtn">🔗 Find me on Google</button>
+          <button type="button" class="gbtn" id="findBtn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Find me on Google</button>
         </div>
         <p class="hint">If pasting a link is a hassle (especially on a phone), skip it. Your business name and city are enough for our AI to find the right listing.</p>
       </div>
@@ -212,7 +226,7 @@
         <p class="step-sub">We send the finished audit here. That is the only reason we ask.</p>
         <div class="frow">
           <div><label for="name">Your name</label><input id="name" name="name" type="text" placeholder="First and last" autocomplete="name" required /></div>
-          <div><label for="phone">Phone <span style="text-transform:none;color:#7d8499">(optional, only if you would rather talk than read)</span></label><input id="phone" name="phone" type="tel" placeholder="(602) 555-0123" autocomplete="tel" /></div>
+          <div><label for="phone">Phone <span style="text-transform:none;color:var(--faint)">(optional, only if you would rather talk than read)</span></label><input id="phone" name="phone" type="tel" placeholder="(602) 555-0123" autocomplete="tel" /></div>
         </div>
         <div class="frow">
           <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@business.com" autocomplete="email" required /></div>
@@ -263,7 +277,7 @@
             </select>
           </div>
         </div>
-        <label for="tools" style="margin-top:2px">What do you run the business on now? <span style="text-transform:none;color:#7d8499">(optional)</span></label>
+        <label for="tools" style="margin-top:2px">What do you run the business on now? <span style="text-transform:none;color:var(--faint)">(optional)</span></label>
         <input id="tools" name="tools" type="text" placeholder="e.g. paper calendar, QuickBooks, Square, a nephew with a laptop" />
       </div>
 
@@ -284,21 +298,169 @@
       <input type="text" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
       <div class="actions">
-        <button type="submit" class="go" id="goBtn">Run my free AI audit →</button>
+        <button type="submit" class="go" id="goBtn">Run my free AI audit</button>
         <p class="reassure">Takes 60 seconds. We only email the audit, we never sell your info.</p>
         <div class="status" id="status" aria-live="polite"></div>
       </div>
     </form>
 
     <section class="done" id="done" role="status" tabindex="-1">
-      <div class="check">✓</div>
-      <h2 class="grad">Your audit is on the way.</h2>
+      <div class="check"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <h2>Your audit is on the way.</h2>
       <p>Our AI is reading your Google footprint, your website, and your funnels right now.</p>
       <p>You will get a clear, plain-English breakdown of what we can automate, sent to the email you gave us. Watch your inbox.</p>
-      <p style="margin-top:26px"><b style="color:var(--ink)">Want to skip the line?</b> <span id="doneBookLead">Grab 15 minutes with Aiden now and we will walk the audit together.</span></p>
-      <a id="doneBook" href="index.html#contact" style="display:inline-block;margin-top:14px;padding:15px 30px;border-radius:100px;background:var(--grad);color:#06070b;font-family:'Space Grotesk';font-weight:700;font-size:15px;text-decoration:none">Book my 15-min call →</a>
+      <p style="margin-top:26px"><b>Want to skip the line?</b> <span id="doneBookLead">Grab 15 minutes with Aiden now and we will walk the audit together.</span></p>
+      <a id="doneBook" href="index.html#contact" class="done-cta">Book my 15-min call</a>
     </section>
   </main>
+
+  <script>
+    /* synapse field: a neural network living behind the whole page.
+       Nodes breathe organically, pathways bridge nearby neurons (neuroplasticity),
+       pulses fire along them and chain onward, and the whole web flows upward and
+       twists gently as you scroll. Same aesthetic family as the 3D brain.
+       Kept dim on purpose: it is a background, not a show. */
+    (function synapses(){
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const touch = matchMedia('(pointer: coarse)').matches;
+      const cv = document.createElement('canvas');
+      cv.setAttribute('aria-hidden','true');
+      cv.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:-1';
+      document.body.appendChild(cv);
+      const ctx = cv.getContext('2d');
+      const dpr = Math.min(devicePixelRatio || 1, 1.5);
+      const COL = [[54,224,255],[73,182,255],[138,92,255],[168,87,240],[199,79,198],[255,61,139]];
+      let W, H, LINK, nodes = [], edges = [], pulses = [];
+      function seed(){
+        W = cv.width = innerWidth*dpr; H = cv.height = innerHeight*dpr;
+        cv.style.width = innerWidth+'px'; cv.style.height = innerHeight+'px';
+        LINK = 165*dpr;
+        const n = touch ? 34 : Math.min(90, Math.round(innerWidth*innerHeight/18000));
+        nodes = Array.from({length:n}, () => ({
+          bx: Math.random()*W, by: Math.random()*H*1.4,
+          depth: .25 + Math.random()*.75,
+          ph: Math.random()*Math.PI*2,
+          breath: .5 + Math.random()*.5,
+          c: COL[(Math.random()*COL.length)|0],
+          x: 0, y: 0, flare: 0
+        }));
+        pulses.length = 0;
+      }
+      seed(); addEventListener('resize', seed);
+      let scroll = scrollY, sv = 0;
+      addEventListener('scroll', () => {
+        const s = scrollY; sv += Math.abs(s - scroll)*.003; scroll = s;
+      }, { passive:true });
+      let mx = -1e4, my = -1e4;
+      if (!touch) addEventListener('pointermove', e => { mx = e.clientX*dpr; my = e.clientY*dpr; }, { passive:true });
+      function project(t){
+        const fieldH = H*1.4;
+        for (const nd of nodes){
+          let y = nd.by - (scroll*dpr)*nd.depth*.35;
+          y = ((y % fieldH) + fieldH) % fieldH - H*.2;
+          const twist = Math.sin(scroll*.0012 + nd.ph)*(26*dpr)*nd.depth;
+          nd.x = nd.bx + twist + Math.sin(t*.24 + nd.ph)*(8*dpr);
+          nd.y = y + Math.cos(t*.2 + nd.ph*1.7)*(8*dpr);
+        }
+      }
+      function computeEdges(){
+        edges.length = 0;
+        for (let i = 0; i < nodes.length; i++){
+          let links = 0;
+          for (let j = i+1; j < nodes.length && links < 3; j++){
+            const a = nodes[i], b = nodes[j];
+            const dx = a.x-b.x, dy = a.y-b.y, d2 = dx*dx + dy*dy;
+            if (d2 < LINK*LINK){ edges.push({ a, b, d: Math.sqrt(d2) }); links++; }
+          }
+        }
+      }
+      function fire(){
+        if (!edges.length || pulses.length > 8) return;
+        const e = edges[(Math.random()*edges.length)|0];
+        pulses.push({ e, t: 0, sp: .008 + Math.random()*.012, dir: Math.random() < .5 ? 1 : -1, hops: 0 });
+      }
+      let frame = 0, t = 0, nextFire = 1.2;
+      function draw(){
+        t += .016;
+        ctx.clearRect(0, 0, W, H);
+        project(t);
+        if (frame % 4 === 0) computeEdges();
+        frame++;
+        sv *= .94;
+        const energy = Math.min(1, sv);
+        /* pathways */
+        for (const e of edges){
+          const k = 1 - e.d/LINK;
+          let o = .045 + k*.075 + energy*.06;
+          if (!touch){
+            const md = Math.hypot((e.a.x+e.b.x)/2 - mx, (e.a.y+e.b.y)/2 - my);
+            if (md < 260*dpr) o += (1 - md/(260*dpr))*.1;
+          }
+          ctx.globalAlpha = Math.min(.28, o);
+          ctx.strokeStyle = 'rgb(138,92,255)';
+          ctx.lineWidth = dpr*k + .4;
+          ctx.beginPath(); ctx.moveTo(e.a.x, e.a.y); ctx.lineTo(e.b.x, e.b.y); ctx.stroke();
+        }
+        /* firing pulses, chaining neuron to neuron */
+        for (let i = pulses.length-1; i >= 0; i--){
+          const p = pulses[i];
+          p.t += p.sp*(1 + energy*1.5);
+          if (p.t >= 1){
+            const target = p.dir > 0 ? p.e.b : p.e.a;
+            target.flare = 1;
+            pulses.splice(i, 1);
+            if (p.hops < 2 && Math.random() < .45){
+              const next = edges.filter(e2 => e2 !== p.e && (e2.a === target || e2.b === target));
+              if (next.length){
+                const e2 = next[(Math.random()*next.length)|0];
+                pulses.push({ e: e2, t: 0, sp: p.sp, dir: e2.a === target ? 1 : -1, hops: p.hops+1 });
+              }
+            }
+            continue;
+          }
+          const tt = p.dir > 0 ? p.t : 1 - p.t;
+          const x = p.e.a.x + (p.e.b.x - p.e.a.x)*tt;
+          const y = p.e.a.y + (p.e.b.y - p.e.a.y)*tt;
+          const c = (p.dir > 0 ? p.e.a : p.e.b).c;
+          ctx.fillStyle = `rgb(${c[0]},${c[1]},${c[2]})`;
+          ctx.globalAlpha = .5;
+          ctx.beginPath(); ctx.arc(x, y, 1.7*dpr, 0, 7); ctx.fill();
+          ctx.globalAlpha = .12;
+          ctx.beginPath(); ctx.arc(x, y, 5*dpr, 0, 7); ctx.fill();
+        }
+        /* neurons: organic breathing + flare on pulse arrival */
+        for (const nd of nodes){
+          const breath = .6 + .4*Math.sin(t*nd.breath + nd.ph);
+          nd.flare *= .93;
+          let glow = .09 + .09*breath + nd.flare*.5 + energy*.08;
+          if (!touch){
+            const d = Math.hypot(nd.x - mx, nd.y - my);
+            if (d < 240*dpr) glow += (1 - d/(240*dpr))*.2;
+          }
+          const r = (1.1 + nd.depth*1.3)*dpr*(1 + nd.flare*.8);
+          const [cr, cg, cb] = nd.c;
+          ctx.fillStyle = `rgb(${cr},${cg},${cb})`;
+          ctx.globalAlpha = Math.min(.26, glow*.5);
+          ctx.beginPath(); ctx.arc(nd.x, nd.y, r*3.2, 0, 7); ctx.fill();
+          ctx.globalAlpha = Math.min(.7, .22 + glow);
+          ctx.beginPath(); ctx.arc(nd.x, nd.y, r, 0, 7); ctx.fill();
+        }
+        if (t > nextFire){
+          fire(); if (energy > .3) fire();
+          nextFire = t + .5 + Math.random()*1.1;
+        }
+      }
+      if (reduce){ project(0); computeEdges(); draw(); return; }
+      let lastFrame = 0;
+      (function loop(){
+        requestAnimationFrame(loop);
+        lastFrame = performance.now();
+        if (!document.hidden) draw();
+      })();
+      /* rAF starves in occluded/throttled windows; low-rate fallback keeps it alive */
+      setInterval(() => { if (performance.now() - lastFrame > 120) draw(); }, 66);
+    })();
+  </script>
 
 <script>
   /* ============================================================
